@@ -114,29 +114,47 @@ sh T0-run-DeepRank-T0980s1.sh
 
 ```
    Usage:
-   $ sh bin/run_DeepRank.sh <target id> <file name>.fasta <model directory>  <output folder>
+   $ sh bin/run_DeepRank.sh <target id> <file name>.fasta <model directory> <output folder>
 
    Example:
-   $ sh bin/run_multicom.sh T0980s1 examples/T0980s1.fasta test_out/T0980s1_out
+   $ sh bin/run_DeepRank.sh T0980s1 examples/T0980s1.fasta examples/T0980s1 test_out/T0980s1_out
 ```
 
 **(10) Run individual methods for quality assessment**
 
 ```
 Examples:
-   hhsearch:
-   $ sh bin/P1-run-hhsearch.sh <target id> <file name>.fasta  <output folder>
+   DeepQA:
+   $ sh bin/P1-run-DeepRank-DeepQA.sh <target id> <file name>.fasta <model directory> <output folder>
+
+   proq3:
+   $ sh bin/P2-run-DeepRank-proq3.sh <target id> <file name>.fasta <model directory> <output folder>
    
-   dncon2:
-   $ sh bin/P4-run-dncon2.sh <target id> <file name>.fasta  <output folder>
-
-   hhsuite:
-   $ sh bin/P11-run-hhsuite.sh <target id> <file name>.fasta  <output folder>
-
-   hhblits3:
-   $ sh bin/P24-run-hhblits3.sh <target id> <file name>.fasta  <output folder>
-
-   confold:
-   $ sh bin/P27-run-confold.sh <target id> <file name>.fasta  <output folder>
-
+   dope:
+   $ sh bin/P3-run-DeepRank-dope.sh <target id> <file name>.fasta <model directory> <output folder>
+   
+   OPUS:
+   $ sh bin/P4-run-DeepRank-OPUS.sh <target id> <file name>.fasta <model directory> <output folder>
+   
+   RF_SRS:
+   $ sh bin/P5-run-DeepRank-RF_SRS.sh <target id> <file name>.fasta <model directory> <output folder>
+   
+   vonorota:
+   $ sh bin/P6-run-DeepRank-vonorota.sh <target id> <file name>.fasta <model directory> <output folder>
+   
+   Apollo:
+   $ sh bin/P7-run-DeepRank-Apollo.sh <target id> <file name>.fasta <model directory> <output folder>
+   
+   ModFoldclust2:
+   $ sh bin/P7-run-DeepRank-ModFoldclust2.sh <target id> <file name>.fasta <model directory> <output folder>
+   
+   pcons:
+   $ sh bin/P9-run-DeepRank-pcons.sh <target id> <file name>.fasta <model directory> <output folder>
+   
+   SBROD:
+   $ sh bin/P10-run-DeepRank-SBROD.sh <target id> <file name>.fasta <model directory> <output folder>
+   
+   contact:
+   $ sh bin/P11-run-DeepRank-contact.shh <target id> <file name>.fasta <model directory> <output folder>
+   
 ```
