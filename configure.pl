@@ -336,8 +336,10 @@ close OUT;
 
 
 ### compress benchmark dataset
-#chdir("$install_dir/installation");
-#`tar -zxf benchmark.tar.gz`;
+chdir("$install_dir/installation");
+`tar -zxf benchmark.tar.gz`;
+chdir("$install_dir/examples");
+`tar -zxf T0980s1.tar.gz`;
 
 
 =pod
