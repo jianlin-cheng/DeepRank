@@ -310,7 +310,7 @@ while($check_iteration<4)
 		push @score_prediction, {
                 name => $model,
                 score => $score 
-        }
+        };
 		
 		$model_num++;
 	  }
