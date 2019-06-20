@@ -342,10 +342,6 @@ chdir("$install_dir/examples");
 `tar -zxf T0980s1.tar.gz`;
 
 
-=pod
-##### generate scripts for methods, saved in bin
-#installation/DeepRank_programs/.P1_run_hhsearch.sh
-
 print "#########  (7) Configuring DeepRank programs\n";
 $method_file = "$install_dir/method.list";
 $option_list = "$install_dir/installation/DeepRank_configure_files/DeepRank_programs_list";
@@ -355,6 +351,8 @@ $option_list = "$install_dir/installation/DeepRank_configure_files/DeepRank_prog
 
 $python_env = 0;
 $boost_enable = 0;
+
+open(OUT,">$install_dir/Method_tutorial.txt") || die "Failed to open file $install_dir/Method_tutorial.txt\n";
 if(!(-e $method_file) or !(-e $option_list))
 {
 	print "\nFailed to find method file ($method_file and $option_list), please contact us!\n\n";
@@ -399,16 +397,6 @@ if(!(-e $method_file) or !(-e $option_list))
 			$file = $method_programs{"${method}"};
 			print TMP "$file\n";
 		}
-		if(exists($method_programs{"${method}_easy"}))
-		{
-			$file = $method_programs{"${method}_easy"};
-			print TMP "$file\n";
-		}
-		if(exists($method_programs{"${method}_hard"}))
-		{
-			$file = $method_programs{"${method}_hard"};
-			print TMP "$file\n";
-		}
 	}
 	close TMP;
 	configure_file2("$install_dir/installation/DeepRank_configure_files/option.tmp",'installation');
@@ -433,6 +421,7 @@ if(!(-e $method_file) or !(-e $option_list))
 		$method_indx++;
 		
 		print  "\n################################################################# Method $method_indx: $method  #################################################################\n\n";
+		print  OUT "\n################################################################# Method $method_indx: $method  #################################################################\n\n";
 		if(exists($method_programs{"${method}"}))
 		{
 			$file = $method_programs{"${method}"};
@@ -440,32 +429,12 @@ if(!(-e $method_file) or !(-e $option_list))
 			$program_file = pop @tmp;
 			if(-e "$install_dir/bin/$program_file")
 			{
-				print "$install_dir/bin/$program_file <target id> <fasta> <output-directory>\n\n";
-				print "\t** Example: $install_dir/bin/$program_file T1006 $install_dir/examples/T1006.fasta $install_dir/test_out/T1006_$method\n\n";
+				print OUT "Usage: $install_dir/bin/$program_file <target id> <fasta> <model directory> <output-directory>\n\n";
+				print "Usage: $install_dir/bin/$program_file <target id> <fasta> <model directory> <output-directory>\n\n";
+				print OUT "\t** Example: $install_dir/bin/$program_file T0980s1 $install_dir/examples/T0980s1.fasta $install_dir/examples/T0980s1 $install_dir/test_out/T0980s1_$method\n\n";
+				print "\t** Example: $install_dir/bin/$program_file T0980s1 $install_dir/examples/T0980s1.fasta $install_dir/examples/T0980s1 $install_dir/test_out/T0980s1_$method\n\n";
 			}
 			
-		}
-		if(exists($method_programs{"${method}_easy"}))
-		{
-			$file = $method_programs{"${method}_easy"};
-			@tmp = split(/\//,$file);
-			$program_file = pop @tmp;
-			if(-e "$install_dir/bin/$program_file")
-			{
-				print "$install_dir/bin/$program_file <target id> <fasta> <output-directory>\n\n";
-				print "\t** Example: $install_dir/bin/$program_file T1006 $install_dir/examples/T1006.fasta $install_dir/test_out/T1006_$method\n\n";
-			}
-		}
-		if(exists($method_programs{"${method}_hard"}))
-		{
-			$file = $method_programs{"${method}_hard"};
-			@tmp = split(/\//,$file);
-			$program_file = pop @tmp;
-			if(-e "$install_dir/bin/$program_file")
-			{
-				print "$install_dir/bin/$program_file <target id> <fasta> <output-directory>\n\n";
-				print "\t** Example: $install_dir/bin/$program_file T1006 $install_dir/examples/T1006.fasta $install_dir/test_out/T1006_${method}_hard\n\n";
-			}
 		}
 		
 		if($method eq 'dncon2')
@@ -477,9 +446,9 @@ if(!(-e $method_file) or !(-e $option_list))
 	
 
 }
-
+close OUT;
 system("chmod +x $install_dir/installation/DeepRank_test_codes/*sh");
-=cut
+
 system("cp $install_dir/src/run_DeepRank.sh $install_dir/bin/run_DeepRank.sh");
 system("chmod +x $install_dir/bin/*.sh");
 
