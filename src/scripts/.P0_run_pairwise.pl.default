@@ -176,10 +176,6 @@ $pairwise_out = $TMP_output."/"."pairwise";
 system("mkdir -p $pairwise_out");
 
 $score_pairwise = $pairwise_out."/".$name.".gdt";
-$qapro_out =$task_dir."/"."QApro";
-system("mkdir  -p $qapro_out");
-$score_QApro = $qapro_out."/"."filt_mod.final_ranking";
-
 $ren_voronota=$TMP_output."/"."feature_voronota.".$targetname;
 
 $ren_Proq2_global=$TMP_output."/"."feature_proq2.".$targetname;

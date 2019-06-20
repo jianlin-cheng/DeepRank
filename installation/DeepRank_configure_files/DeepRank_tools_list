@@ -10,3 +10,7 @@ tools/DNCON2/scripts/aln-hhblits-jhmmer.pl
 tools/DNCON2/scripts/generate-alignments.pl
 tools/DNCON2/scripts/jackhammer_aln.pl
 tools/DNCON2/scripts/run-ccmpred-freecontact-psicov.pl
+
+
+## proq3
+tools/proq3/.paths.sh

@@ -175,7 +175,7 @@ if(-d $tooldir)
 
 
 my($addr_mod9v15) = $DeepRank_db_tools_dir."/tools/modeller-9.15/bin/mod9.15";
-if(-d $addr_mod9v15)
+if(-e $addr_mod9v15)
 {
 	print "\n#########  Setting up MODELLER 9v15 \n";
 	if (!-s $addr_mod9v15) {
