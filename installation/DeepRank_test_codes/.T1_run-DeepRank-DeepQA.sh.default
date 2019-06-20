@@ -8,7 +8,7 @@ export LD_LIBRARY_PATH=SOFTWARE_PATH/tools/DeepQA/libs:$LD_LIBRARY_PATH
 
 touch SOFTWARE_PATH/test_out/T0980s1_DeepQA.running
 if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_DeepQA/ALL_scores/feature_DeepQA.T0980s1" ]];then
-	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_DeepQA.pl $targetid   $fasta  $model_dir  $outputfolder\n\n";								
+	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_DeepQA.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_DeepQA/\n\n";								
 	perl SOFTWARE_PATH/src/scripts/run_DeepRank_DeepQA.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_DeepQA/ 2>&1 | tee  SOFTWARE_PATH/test_out/T0980s1_DeepQA.log
 fi
 

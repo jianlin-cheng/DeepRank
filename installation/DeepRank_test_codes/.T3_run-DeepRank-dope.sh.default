@@ -6,7 +6,7 @@ cd SOFTWARE_PATH/test_out/T0980s1_dope/
 
 touch SOFTWARE_PATH/test_out/T0980s1_dope.running
 if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_dope/ALL_scores/feature_dope.T0980s1" ]];then
-	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_dope.pl $targetid   $fasta  $model_dir  $outputfolder\n\n";								
+	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_dope.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_dope/\n\n";								
 	perl SOFTWARE_PATH/src/scripts/run_DeepRank_dope.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_dope/ 2>&1 | tee  SOFTWARE_PATH/test_out/T0980s1_dope.log
 fi
 

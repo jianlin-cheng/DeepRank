@@ -6,7 +6,7 @@ cd SOFTWARE_PATH/test_out/T0980s1_modfoldclust2/
 
 touch SOFTWARE_PATH/test_out/T0980s1_modfoldclust2.running
 if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_modfoldclust2/ALL_scores/modfoldclust2.T0980s1" ]];then
-	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_modfoldclust2.pl $targetid   $fasta  $model_dir  $outputfolder\n\n";								
+	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_modfoldclust2.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_modfoldclust2/\n\n";								
 	perl SOFTWARE_PATH/src/scripts/run_DeepRank_modfoldclust2.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_modfoldclust2/ 2>&1 | tee  SOFTWARE_PATH/test_out/T0980s1_modfoldclust2.log
 fi
 

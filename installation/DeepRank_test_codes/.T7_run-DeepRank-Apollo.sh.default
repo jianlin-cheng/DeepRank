@@ -6,7 +6,7 @@ cd SOFTWARE_PATH/test_out/T0980s1_Apollo/
 
 touch SOFTWARE_PATH/test_out/T0980s1_Apollo.running
 if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_Apollo/ALL_scores/feature_pairwiseScore.T0980s1" ]];then
-	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_Apollo.pl $targetid   $fasta  $model_dir  $outputfolder\n\n";								
+	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_Apollo.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_Apollo/\n\n";								
 	perl SOFTWARE_PATH/src/scripts/run_DeepRank_Apollo.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_Apollo/ 2>&1 | tee  SOFTWARE_PATH/test_out/T0980s1_Apollo.log
 fi
 

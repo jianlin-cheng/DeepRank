@@ -1,24 +1,27 @@
 #!/bin/bash
 
-mkdir -p SOFTWARE_PATH/test_out/T0980s1_SBROD/
-cd SOFTWARE_PATH/test_out/T0980s1_SBROD/
+mkdir -p SOFTWARE_PATH/test_out/T0980s1_contact/
+cd SOFTWARE_PATH/test_out/T0980s1_contact/
 
 
-touch SOFTWARE_PATH/test_out/T0980s1_SBROD.running
-if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_SBROD/ALL_scores/feature_SBROD.T0980s1" ]];then
-	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_SBROD.pl $targetid   $fasta  $model_dir  $outputfolder\n\n";								
-	perl SOFTWARE_PATH/src/scripts/run_DeepRank_SBROD.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_SBROD/ 2>&1 | tee  SOFTWARE_PATH/test_out/T0980s1_SBROD.log
+touch SOFTWARE_PATH/test_out/T0980s1_contact.running
+if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_contact/ALL_scores/feature_dncon2_long-range.T0980s1" ]];then
+	echo " SOFTWARE_PATH/src/scripts/run_DeepRank_contact.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_contact/\n\n";								
+	perl SOFTWARE_PATH/src/scripts/run_DeepRank_contact.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_contact/ 2>&1 | tee  SOFTWARE_PATH/test_out/T0980s1_contact.log
 fi
 
 
 printf "\nFinished.."
-printf "\nCheck log file <SOFTWARE_PATH/test_out/T0980s1_SBROD.log>\n\n"
+printf "\nCheck log file <SOFTWARE_PATH/test_out/T0980s1_contact.log>\n\n"
 
 
-if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_SBROD/ALL_scores/feature_SBROD.T0980s1" ]];then 
-	printf "!!!!! Failed to run SBROD, check the installation <SOFTWARE_PATH/src/scripts/run_DeepRank_SBROD.pl>\n\n"
+if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_contact/ALL_scores/feature_dncon2_long-range.T0980s1" ]];then 
+	printf "!!!!! Failed to run contact, check the installation <SOFTWARE_PATH/src/scripts/run_DeepRank_contact.pl>\n\n"
 else
 	printf "\nJob successfully completed!"
-	printf "\nResults: SOFTWARE_PATH/test_out/T0980s1_SBROD/ALL_scores/feature_SBROD.T0980s1\n\n"
+	printf "\nResults: SOFTWARE_PATH/test_out/T0980s1_contact/ALL_scores/feature_dncon2_long-range.T0980s1\n"
+	printf "\nShort-range Results: SOFTWARE_PATH/test_out/T0980s1_contact/ALL_scores/contact_prediction_short-range.T0980s1\n"
+	printf "Medium-range Results: SOFTWARE_PATH/test_out/T0980s1_contact/ALL_scores/contact_prediction_medium-range.T0980s1\n"
+	printf "Long-range Results: SOFTWARE_PATH/test_out/T0980s1_contact/ALL_scores/contact_prediction_long-range.T0980s1\n\n"
 fi
-rm SOFTWARE_PATH/test_out/T0980s1_SBROD.running
+rm SOFTWARE_PATH/test_out/T0980s1_contact.running

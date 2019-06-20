@@ -13,4 +13,7 @@ tools/DNCON2/scripts/run-ccmpred-freecontact-psicov.pl
 
 
 ## proq3
-tools/proq3/.paths.sh
+tools/proq3/paths.sh
+
+### voronota
+tools/voronota_1_18_1877/run_voronota_batch.pl

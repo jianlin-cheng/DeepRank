@@ -12,7 +12,7 @@ export LD_LIBRARY_PATH=/home/jh7x3/DeepRank/tools/rosetta_2014.16.56682_bundle/m
 
 touch /home/jh7x3/DeepRank/test_out/T0980s1_proq3.running
 if [[ ! -f "/home/jh7x3/DeepRank/test_out/T0980s1_proq3/ALL_scores/feature_proq3.T0980s1" ]];then
-	echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_proq3.pl $targetid   $fasta  $model_dir  $outputfolder\n\n";								
+	echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_proq3.pl T0980s1  /home/jh7x3/DeepRank/examples/T0980s1.fasta /home/jh7x3/DeepRank/examples/T0980s1  /home/jh7x3/DeepRank/test_out/T0980s1_proq3/\n\n";								
 	perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_proq3.pl T0980s1  /home/jh7x3/DeepRank/examples/T0980s1.fasta /home/jh7x3/DeepRank/examples/T0980s1  /home/jh7x3/DeepRank/test_out/T0980s1_proq3/ 2>&1 | tee  /home/jh7x3/DeepRank/test_out/T0980s1_proq3.log
 fi
 

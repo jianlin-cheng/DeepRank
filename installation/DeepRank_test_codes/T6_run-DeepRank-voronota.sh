@@ -6,7 +6,7 @@ cd /home/jh7x3/DeepRank/test_out/T0980s1_voronota/
 
 touch /home/jh7x3/DeepRank/test_out/T0980s1_voronota.running
 if [[ ! -f "/home/jh7x3/DeepRank/test_out/T0980s1_voronota/ALL_scores/feature_voronota.T0980s1" ]];then
-	echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_voronota.pl $targetid   $fasta  $model_dir  $outputfolder\n\n";								
+	echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_voronota.pl T0980s1  /home/jh7x3/DeepRank/examples/T0980s1.fasta /home/jh7x3/DeepRank/examples/T0980s1  /home/jh7x3/DeepRank/test_out/T0980s1_voronota/\n\n";								
 	perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_voronota.pl T0980s1  /home/jh7x3/DeepRank/examples/T0980s1.fasta /home/jh7x3/DeepRank/examples/T0980s1  /home/jh7x3/DeepRank/test_out/T0980s1_voronota/ 2>&1 | tee  /home/jh7x3/DeepRank/test_out/T0980s1_voronota.log
 fi
 
