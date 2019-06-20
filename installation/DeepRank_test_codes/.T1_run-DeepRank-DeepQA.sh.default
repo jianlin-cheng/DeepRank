@@ -1,0 +1,26 @@
+#!/bin/bash
+
+mkdir -p SOFTWARE_PATH/test_out/T0980s1_DeepQA/
+cd SOFTWARE_PATH/test_out/T0980s1_DeepQA/
+
+
+export LD_LIBRARY_PATH=SOFTWARE_PATH/tools/DeepQA/libs:$LD_LIBRARY_PATH
+
+touch SOFTWARE_PATH/test_out/T0980s1_DeepQA.running
+if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_DeepQA/ALL_scores/feature_DeepQA.T0980s1" ]];then
+	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_DeepQA.pl $targetid   $fasta  $model_dir  $outputfolder\n\n";								
+	perl SOFTWARE_PATH/src/scripts/run_DeepRank_DeepQA.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_DeepQA/ 2>&1 | tee  SOFTWARE_PATH/test_out/T0980s1_DeepQA.log
+fi
+
+
+printf "\nFinished.."
+printf "\nCheck log file <SOFTWARE_PATH/test_out/T0980s1_DeepQA.log>\n\n"
+
+
+if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_DeepQA/ALL_scores/feature_DeepQA.T0980s1" ]];then 
+	printf "!!!!! Failed to run DeepQA, check the installation <SOFTWARE_PATH/src/scripts/run_DeepRank_DeepQA.pl>\n\n"
+else
+	printf "\nJob successfully completed!"
+	printf "\nResults: SOFTWARE_PATH/test_out/T0980s1_DeepQA/ALL_scores/feature_DeepQA.T0980s1\n\n"
+fi
+rm SOFTWARE_PATH/test_out/T0980s1_DeepQA.running

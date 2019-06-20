@@ -1,0 +1,39 @@
+# multicom
+installation/DeepRank_test_codes/T0-run-DeepRank-T0980s1.sh
+
+# DeepQA
+installation/DeepRank_test_codes/T1_run-DeepRank-DeepQA.sh
+
+# proq3
+installation/DeepRank_test_codes/T2_run-DeepRank-proq3.sh
+
+# dope
+installation/DeepRank_test_codes/T3_run-DeepRank-dope.sh
+
+# OPUS
+installation/DeepRank_test_codes/T4_run-DeepRank-OPUS.sh
+
+# RF_SRS
+installation/DeepRank_test_codes/T5_run-DeepRank-RF_SRS.sh
+
+# voronota
+installation/DeepRank_test_codes/T6_run-DeepRank-voronota.sh
+
+# Apollo
+installation/DeepRank_test_codes/T7_run-DeepRank-Apollo.sh
+
+# ModFoldclust2
+installation/DeepRank_test_codes/T8_run-DeepRank-ModFoldclust2.sh
+
+# pcons
+installation/DeepRank_test_codes/T9_run-DeepRank-pcons.sh
+
+# SBROD
+installation/DeepRank_test_codes/T10_run-DeepRank-SBROD.sh
+
+# contact
+installation/DeepRank_test_codes/T11_run-DeepRank-contact.sh
+
+
+
+

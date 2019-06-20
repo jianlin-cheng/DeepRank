@@ -1,0 +1,10 @@
+.T10_run-DeepRank-SBROD.sh.default
+.T1_run-DeepRank-DeepQA.sh.default
+.T2_run-DeepRank-proq3.sh.default
+.T3_run-DeepRank-dope.sh.default
+.T4_run-DeepRank-OPUS.sh.default
+.T5_run-DeepRank-RF_SRS.sh.default
+.T6_run-DeepRank-voronota.sh.default
+.T7_run-DeepRank-Apollo.sh.default
+.T8_run-DeepRank-ModFoldclust2.sh.default
+.T9_run-DeepRank-pcons.sh.default

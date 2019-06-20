@@ -1,0 +1,24 @@
+#!/bin/bash
+
+mkdir -p SOFTWARE_PATH/test_out/T0980s1_RF_SRS/
+cd SOFTWARE_PATH/test_out/T0980s1_RF_SRS/
+
+
+touch SOFTWARE_PATH/test_out/T0980s1_RF_SRS.running
+if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_RF_SRS/ALL_scores/feature_RF_SRS.T0980s1" ]];then
+	echo "perl SOFTWARE_PATH/src/scripts/run_DeepRank_RF_SRS.pl $targetid   $fasta  $model_dir  $outputfolder\n\n";								
+	perl SOFTWARE_PATH/src/scripts/run_DeepRank_RF_SRS.pl T0980s1  SOFTWARE_PATH/examples/T0980s1.fasta SOFTWARE_PATH/examples/T0980s1  SOFTWARE_PATH/test_out/T0980s1_RF_SRS/ 2>&1 | tee  SOFTWARE_PATH/test_out/T0980s1_RF_SRS.log
+fi
+
+
+printf "\nFinished.."
+printf "\nCheck log file <SOFTWARE_PATH/test_out/T0980s1_RF_SRS.log>\n\n"
+
+
+if [[ ! -f "SOFTWARE_PATH/test_out/T0980s1_RF_SRS/ALL_scores/feature_RF_SRS.T0980s1" ]];then 
+	printf "!!!!! Failed to run RF_SRS, check the installation <SOFTWARE_PATH/src/scripts/run_DeepRank_RF_SRS.pl>\n\n"
+else
+	printf "\nJob successfully completed!"
+	printf "\nResults: SOFTWARE_PATH/test_out/T0980s1_RF_SRS/ALL_scores/feature_RF_SRS.T0980s1\n\n"
+fi
+rm SOFTWARE_PATH/test_out/T0980s1_RF_SRS.running
