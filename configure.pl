@@ -212,15 +212,15 @@ if(-e $addr_mod9v15)
 }
 =cut
 
-my($addr_mod9v16) = $multicom_db_tools_dir."/tools/modeller-9.16/bin/mod9.16";
-if(-d $addr_mod9v16)
+my($addr_mod9v16) = $DeepRank_db_tools_dir."/tools/modeller-9.16/bin/mod9.16";
+if(-e $addr_mod9v16)
 {
 	print "\n#########  Setting up MODELLER 9v16 \n";
 	if (!-s $addr_mod9v16) {
 		die "Please check $addr_mod9v16, you can download the modeller and install it by yourself if the current one in the tool folder is not working well, the key is MODELIRANJE.  please install it to the folder tools/modeller-9.16, with the file mod9v7 in the bin directory\n";
 	}
 
-	my($deep_mod9v16) = $multicom_db_tools_dir."/tools/modeller-9.16/bin/modeller9v16local";
+	my($deep_mod9v16) = $DeepRank_db_tools_dir."/tools/modeller-9.16/bin/modeller9v16local";
 	$OUT = new FileHandle ">$deep_mod9v16";
 	$IN=new FileHandle "$addr_mod9v16";
 	while(defined($line=<$IN>))
@@ -230,7 +230,7 @@ if(-d $addr_mod9v16)
 
 			if(@ttt>1 && $ttt[0] eq "MODINSTALL9v16")
 			{
-					print $OUT "MODINSTALL9v16=\"$multicom_db_tools_dir/tools/modeller-9.16\"\n";
+					print $OUT "MODINSTALL9v16=\"$DeepRank_db_tools_dir/tools/modeller-9.16\"\n";
 			}
 			else
 			{
@@ -240,9 +240,9 @@ if(-d $addr_mod9v16)
 	$IN->close();
 	$OUT->close();
 	#system("chmod 777 $deep_mod9v16");
-	$modeller_conf = $multicom_db_tools_dir."/tools/modeller-9.16/modlib/modeller/config.py";
+	$modeller_conf = $DeepRank_db_tools_dir."/tools/modeller-9.16/modlib/modeller/config.py";
 	$OUT = new FileHandle ">$modeller_conf";
-	print $OUT "install_dir = r\'$multicom_db_tools_dir/tools/modeller-9.16/\'\n";
+	print $OUT "install_dir = r\'$DeepRank_db_tools_dir/tools/modeller-9.16/\'\n";
 	print $OUT "license = \'MODELIRANJE\'";
 	$OUT->close();
 	#system("chmod 777 $modeller_conf");

@@ -42,7 +42,7 @@ if (! -f $configure_file || $install_dir ne "$cur_dir/")
 print " OK!\n";
 
 
-if(!-s $DeepRank_db_tools_dir)
+if(!(-d $DeepRank_db_tools_dir))
 {
 	`mkdir $DeepRank_db_tools_dir`;
 }
