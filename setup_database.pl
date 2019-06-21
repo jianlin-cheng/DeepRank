@@ -91,21 +91,31 @@ $basic_tools_list = "scwrl4.tar.gz;TMscore_32.tar.gz;";
 foreach $tool (@basic_tools)
 {
 	$toolname = substr($tool,0,index($tool,'.tar.gz'));
-	if(-e "$tools_dir/$toolname/download.done")
+	if(-d "$tools_dir/$toolname")
 	{
-		print "\t$toolname is done!\n";
-		next;
+		if(-e "$tools_dir/$toolname/download.done")
+		{
+			print "\t$toolname is done!\n";
+			next;
+		}
+	}elsif(-f "$tools_dir/$toolname")
+	{
+			print "\t$toolname is done!\n";
+			next;
 	}
 	-e $tool || `rm $tool`;
-	`wget http://sysbio.rnet.missouri.edu/DeepRank_db_tools/tools/$tool`;
+	`wget http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools/$tool`;
 	if(-e "$tool")
 	{
 		print "\n\t$tool is found, start extracting files......\n\n";
 		`tar -zxf $tool`;
-		`echo 'done' > $toolname/download.done`;
+		if(-d $toolname)
+		{
+			`echo 'done' > $toolname/download.done`;
+		}
 		`rm $tool`;
 	}else{
-		die "Failed to download $tool from http://sysbio.rnet.missouri.edu/DeepRank_db_tools/tools, please contact chengji\@missouri.edu\n";
+		die "Failed to download $tool from http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools, please contact chengji\@missouri.edu\n";
 	}
 }
 
@@ -165,22 +175,34 @@ if(!(-e $method_file) or !(-e $method_info))
 			foreach $tool (@basic_tools)
 			{
 				$toolname = substr($tool,0,index($tool,'.tar.gz'));
-				if(-e "$tools_dir/$toolname/download.done")
+				
+				if(-d "$tools_dir/$toolname")
 				{
-					print "\t\t$toolname is done!\n";
-					next;
-				}
-				`wget http://sysbio.rnet.missouri.edu/DeepRank_db_tools/tools/$tool`;
+					if(-e "$tools_dir/$toolname/download.done")
+					{
+						print "\t$toolname is done!\n";
+						next;
+					}
+				}elsif(-f "$tools_dir/$toolname")
+				{
+						print "\t$toolname is done!\n";
+						next;
+				}				
+				-e $tool || `rm $tool`;
+				`wget http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools/$tool`;
 				if(-e "$tool")
 				{
 					print "\n\t\t$tool is found, start extracting files......\n\n";
 					`tar -zxf $tool`;
 					
 					chdir($tools_dir);
-					`echo 'done' > $toolname/download.done`;
+					if(-d "$tools_dir/$toolname")
+					{
+						`echo 'done' > $toolname/download.done`;
+					}
 					`rm $tool`;
 				}else{
-					die "Failed to download $tool from http://sysbio.rnet.missouri.edu/DeepRank_db_tools/tools, please contact chengji\@missouri.edu\n";
+					die "Failed to download $tool from http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools, please contact chengji\@missouri.edu\n";
 				}
 			}
 			
@@ -249,15 +271,47 @@ if(!(-e $method_file) or !(-e $method_info))
 					print "\t\t$dbname is done!\n";
 					next;
 				}
-				`wget http://sysbio.rnet.missouri.edu/DeepRank_db_tools/databases/$db`;
+				
+				if($db eq 'uniref.tar.gz')
+				{
+					$uniref_dir = "$DeepRank_db_tools_dir/databases/uniref";
+					if(!(-d "$uniref_dir"))
+					{
+						`mkdir $uniref_dir`;
+					}
+					chdir("$DeepRank_db_tools_dir/databases/uniref/");
+					if(-e "uniref90.pal")
+					{
+						print "\t$uniref_dir/uniref90 has been formatted, skip!\n";
+					}elsif(-e "uniref90.fasta")
+					{
+						
+						print "\tuniref90.fasta is found, start formating......\n";
+						`$tools_dir/DNCON2/blast-2.2.26/bin/formatdb -i uniref90.fasta -o T -t uniref90 -n uniref90`;
+					}else{
+						-e "uniref90.fasta.gz" || `rm uniref90.fasta.gz`;
+						`wget ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz`;
+						if(-e "uniref90.fasta.gz")
+						{
+							print "\tuniref90.fasta.gz is found, start extracting files\n";
+						}else{
+							die "Failed to download uniref90.fasta.gz from ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/\n";
+						}
+						`gzip -d uniref90.fasta.gz`;
+						`$tools_dir/DNCON2/blast-2.2.26/bin/formatdb -i uniref90.fasta -o T -t uniref90 -n uniref90`;
+					}
+					next;
+				}
+				`wget http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/databases/$db`;
 				if(-e "$db")
 				{
 					print "\t\t$db is found, start extracting files......\n\n";
 					`tar -zxf $db`;
+					
 					`echo 'done' > $dbname/download.done`;
 					`rm $db`;
 				}else{
-					die "Failed to download $db from http://sysbio.rnet.missouri.edu/DeepRank_db_tools/databases, please contact chengji\@missouri.edu\n";
+					die "Failed to download $db from http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/databases, please contact chengji\@missouri.edu\n";
 				}
 			}
 			

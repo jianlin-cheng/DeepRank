@@ -102,7 +102,7 @@ foreach $model (@targets)
 		}
 		### do we need add scwrl here?????
 		
-		$status=system("$H_tool/scwrl4/Scwrl4 -i $file_PDB -o $dir_output/mod2/$modelnew.tmp");
+		$status=system("$H_tool/scwrl4/Scwrl4 -i $file_PDB -o $dir_output/mod2/$modelnew.tmp 2>&1 &> /dev/null");
 		if($status!=0)
 		{
 		  print  "$H_tool/scwrl4/Scwrl4 -i $file_PDB -o $dir_output/mod2/$modelnew.tmp fails !\n";
@@ -352,16 +352,16 @@ if(-e "$ALL_scores/feature_dncon2_short-range.$targetname" and -e "$ALL_scores/f
 	##### (3) Run make prediction for gdt score 
 	print "\n\n##### (3) Run make prediction for gdt score\n\n";
 	`mkdir $dir_output/10_fold_prediction/`;
-	print("perl $H_script/python_lib/P3_make_prediction_by_10folds.pl $dir_output/feat.txt test $H_script/python_lib/DeepRank_fea23_models/ $dir_output/10_fold_prediction/\n");
-	$status = system("perl $H_script/python_lib/P3_make_prediction_by_10folds.pl $dir_output/feat.txt test $H_script/python_lib/DeepRank_fea23_models/ $dir_output/10_fold_prediction/");
+	print("perl $H_script/P3_make_prediction_by_10folds.pl $dir_output/feat.txt test $H_script/python_lib/DeepRank_fea23_models/ $dir_output/10_fold_prediction/\n");
+	$status = system("perl $H_script/P3_make_prediction_by_10folds.pl $dir_output/feat.txt test $H_script/python_lib/DeepRank_fea23_models/ $dir_output/10_fold_prediction/");
 	if($status)# if failed, should we use at least one score?
 	{
 		die "Failed to run the prediction for gdt\n";
 	}
 
 	## add into training and testing dataset 
-	print("perl $H_script/python_lib/P4_add_prediction2feature_feature23_10folds.pl $dir_output/feat.txt  test $dir_output/10_fold_prediction/  $dir_output/feat_with10folds.txt\n");
-	$status = system("perl $H_script/python_lib/P4_add_prediction2feature_feature23_10folds.pl $dir_output/feat.txt  test $dir_output/10_fold_prediction/  $dir_output/feat_with10folds.txt");
+	print("perl $H_script/P4_add_prediction2feature_feature23_10folds.pl $dir_output/feat.txt  test $dir_output/10_fold_prediction/  $dir_output/feat_with10folds.txt\n");
+	$status = system("perl $H_script/P4_add_prediction2feature_feature23_10folds.pl $dir_output/feat.txt  test $dir_output/10_fold_prediction/  $dir_output/feat_with10folds.txt");
 	if($status)# if failed, should we use at least one score?
 	{
 		die "Failed to run <P1_add_prediction2feature_feature23_10folds.pl>\n";
@@ -376,15 +376,15 @@ if(-e "$ALL_scores/feature_dncon2_short-range.$targetname" and -e "$ALL_scores/f
 
 
 
-	print("perl $H_script/python_lib/P5_add_prediction2feature_feature34.pl $dir_output/feat.txt   $dir_output/feat_gdt_predict.txt  $dir_output/feat_gdt_predict_withall.txt\n");
-	$status = system("perl $H_script/python_lib/P5_add_prediction2feature_feature34.pl $dir_output/feat.txt   $dir_output/feat_gdt_predict.txt  $dir_output/feat_gdt_predict_withall.txt");
+	print("perl $H_script/P5_add_prediction2feature_feature34.pl $dir_output/feat.txt   $dir_output/feat_gdt_predict.txt  $dir_output/feat_gdt_predict_withall.txt\n");
+	$status = system("perl $H_script/P5_add_prediction2feature_feature34.pl $dir_output/feat.txt   $dir_output/feat_gdt_predict.txt  $dir_output/feat_gdt_predict_withall.txt");
 	if($status)# if failed, should we use at least one score?
 	{
 		die "Failed to run the prediction adding for gdt\n";
 	}
 
-	print("perl $H_script/python_lib/P6_get_model2prediction.pl $dir_output/feat.txt  $dir_output/feat_gdt_predict.txt  $dir_output/DeepRank_gdt_prediction_unsort.txt\n");
-	$status = system("perl $H_script/python_lib/P6_get_model2prediction.pl $dir_output/feat.txt  $dir_output/feat_gdt_predict.txt  $dir_output/DeepRank_gdt_prediction_unsort.txt");
+	print("perl $H_script/P6_get_model2prediction.pl $dir_output/feat.txt  $dir_output/feat_gdt_predict.txt  $dir_output/DeepRank_gdt_prediction_unsort.txt\n");
+	$status = system("perl $H_script/P6_get_model2prediction.pl $dir_output/feat.txt  $dir_output/feat_gdt_predict.txt  $dir_output/DeepRank_gdt_prediction_unsort.txt");
 	if($status)# if failed, should we use at least one score?
 	{
 		die "Failed to get final prediction for gdt\n";

@@ -102,7 +102,7 @@ foreach $model (@targets)
 		}
 		### do we need add scwrl here?????
 		
-		$status=system("$H_tool/scwrl4/Scwrl4 -i $file_PDB -o $dir_output/mod2/$modelnew.tmp");
+		$status=system("$H_tool/scwrl4/Scwrl4 -i $file_PDB -o $dir_output/mod2/$modelnew.tmp 2>&1 &> /dev/null");
 		if($status!=0)
 		{
 		  print  "$H_tool/scwrl4/Scwrl4 -i $file_PDB -o $dir_output/mod2/$modelnew.tmp fails !\n";
@@ -317,13 +317,13 @@ while($check_iteration<4)
 	  close IN; 
 	  
 	#rank all the models by max score
-	@score_prediction = sort { $b->{"score"} <=> $a->{"score"}} @model_info; 
+	@score_prediction = sort { $b->{"score"} <=> $a->{"score"}} @score_prediction; 
 
 
 	open(OUTTMP, ">$method_score.sorted") || die "can't create file $method_score.sorted.\n";
 	for ($i = 0; $i < @score_prediction; $i++)
 	{
-		print OUTTMP $model_info[$i]->{"name"}, "\t", $model_info[$i]->{"score"}, "\n";  		
+		print OUTTMP $score_prediction[$i]->{"name"}, "\t", $score_prediction[$i]->{"score"}, "\n";  		
 	}
 	close OUTTMP; 
 

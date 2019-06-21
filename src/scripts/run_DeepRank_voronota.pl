@@ -102,7 +102,7 @@ foreach $model (@targets)
 		}
 		### do we need add scwrl here?????
 		
-		$status=system("$H_tool/scwrl4/Scwrl4 -i $file_PDB -o $dir_output/mod2/$modelnew.tmp");
+		$status=system("$H_tool/scwrl4/Scwrl4 -i $file_PDB -o $dir_output/mod2/$modelnew.tmp 2>&1 &> /dev/null");
 		if($status!=0)
 		{
 		  print  "$H_tool/scwrl4/Scwrl4 -i $file_PDB -o $dir_output/mod2/$modelnew.tmp fails !\n";

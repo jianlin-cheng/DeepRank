@@ -172,7 +172,7 @@ if(-d $tooldir)
 }
 
 
-
+=pod
 
 my($addr_mod9v15) = $DeepRank_db_tools_dir."/tools/modeller-9.15/bin/mod9.15";
 if(-e $addr_mod9v15)
@@ -208,6 +208,45 @@ if(-e $addr_mod9v15)
 	print $OUT "license = \'MODELIRANJE\'";
 	$OUT->close();
 	system("cp $deep_mod9v15 $addr_mod9v15");
+	print "Done\n";
+}
+=cut
+
+my($addr_mod9v16) = $multicom_db_tools_dir."/tools/modeller-9.16/bin/mod9.16";
+if(-d $addr_mod9v16)
+{
+	print "\n#########  Setting up MODELLER 9v16 \n";
+	if (!-s $addr_mod9v16) {
+		die "Please check $addr_mod9v16, you can download the modeller and install it by yourself if the current one in the tool folder is not working well, the key is MODELIRANJE.  please install it to the folder tools/modeller-9.16, with the file mod9v7 in the bin directory\n";
+	}
+
+	my($deep_mod9v16) = $multicom_db_tools_dir."/tools/modeller-9.16/bin/modeller9v16local";
+	$OUT = new FileHandle ">$deep_mod9v16";
+	$IN=new FileHandle "$addr_mod9v16";
+	while(defined($line=<$IN>))
+	{
+			chomp($line);
+			@ttt = split(/\=/,$line);
+
+			if(@ttt>1 && $ttt[0] eq "MODINSTALL9v16")
+			{
+					print $OUT "MODINSTALL9v16=\"$multicom_db_tools_dir/tools/modeller-9.16\"\n";
+			}
+			else
+			{
+					print $OUT $line."\n";
+			}
+	}
+	$IN->close();
+	$OUT->close();
+	#system("chmod 777 $deep_mod9v16");
+	$modeller_conf = $multicom_db_tools_dir."/tools/modeller-9.16/modlib/modeller/config.py";
+	$OUT = new FileHandle ">$modeller_conf";
+	print $OUT "install_dir = r\'$multicom_db_tools_dir/tools/modeller-9.16/\'\n";
+	print $OUT "license = \'MODELIRANJE\'";
+	$OUT->close();
+	#system("chmod 777 $modeller_conf");
+	system("cp $deep_mod9v16 $addr_mod9v16");
 	print "Done\n";
 }
 
@@ -447,6 +486,26 @@ if(!(-e $method_file) or !(-e $option_list))
 
 }
 close OUT;
+
+if(-d "$install_dir/tools/DeepQA/tools/spine_X")
+{
+	if(-l "$install_dir/tools/spine_X")
+	{	
+		`rm $install_dir/tools/spine_X`;
+	}
+	`cp $install_dir/tools/DeepQA/tools/spine_X/DeepQA_spX.pl $install_dir/tools/DeepQA/tools/spine_X/spX.pl`;
+	`ln -s $install_dir/tools/DeepQA/tools/spine_X $install_dir/tools/spine_X`;
+}
+
+if(-d "$install_dir/tools/DeepQA/tools/sspro4")
+{
+	if(-l "$install_dir/tools/sspro4")
+	{
+		`rm $install_dir/tools/sspro4`;
+	}
+	`ln -s $install_dir/tools/DeepQA/tools/sspro4 $install_dir/tools/sspro4`; 
+}
+
 system("chmod +x $install_dir/installation/DeepRank_test_codes/*sh");
 
 system("cp $install_dir/src/run_DeepRank.sh $install_dir/bin/run_DeepRank.sh");

@@ -30,8 +30,10 @@ because of this document, I don't want to know about it. Unless it's amusing.
  my($addr_output)=abs_path($ARGV[1]);
 
  ############### modeller is needed, so add this part ############
- $ENV{'PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.15/bin';
- $ENV{'LD_LIBRARY_PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.15/lib/x86_64-intel8';
+ #$ENV{'PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.15/bin';
+ $ENV{'PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.16/bin';
+ #$ENV{'LD_LIBRARY_PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.15/lib/x86_64-intel8';
+ $ENV{'LD_LIBRARY_PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.16/lib/x86_64-intel8';
  #################################################################
 
 ##########################################################################################################
@@ -113,7 +115,8 @@ print "Process $read_path...\n";
         print PY "atmsel = selection(mdl.chains[0])\n";
         print PY "score = atmsel.assess_dope()\n";
         close(PY);
-        $pycommand = "mod9.15 ".$dope_script;
+        #$pycommand = "mod9.15 ".$dope_script;
+        $pycommand = "mod9.16 ".$dope_script;
         system("$pycommand > /dev/null 2>&1");
 
 #print "Running $pycommand, now search for $work_dir/assess_dope.log!\n";
