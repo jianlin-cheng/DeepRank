@@ -5,7 +5,7 @@ The deep learning method for ranking protein structural models
 **(1) Download DeepRank package (short path is recommended)**
 
 ```
-cd /home/DeepRank
+cd ~/
 git clone https://github.com/jianlin-cheng/DeepRank.git
 cd DeepRank
 ```
