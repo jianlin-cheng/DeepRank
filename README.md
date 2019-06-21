@@ -5,7 +5,6 @@ The deep learning method for ranking protein structural models
 **(1) Download DeepRank package (short path is recommended)**
 
 ```
-cd /home/DeepRank
 git clone https://github.com/jianlin-cheng/DeepRank.git
 cd DeepRank
 ```
@@ -18,8 +17,8 @@ a. edit method.list
     uncomment the methods that you would like to run in DeepRank method (i.e., DeepQA, Contact) 
 
 b. edit setup_database.pl
-
-    set the path of variable '$DeepRank_db_tools_dir' for multicom databases and tools (i.e., /home/DeepRank_db_tools/).
+    (i) Manually create folder for database (i.e., /home/DeepRank_db_tools/)
+    (ii) Set the path of variable '$DeepRank_db_tools_dir' for multicom databases and tools (i.e., /home/DeepRank_db_tools/).
 
 c. perl setup_database.pl
 ```
