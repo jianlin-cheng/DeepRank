@@ -127,9 +127,9 @@ sh T0-run-DeepRank-T0980s1.sh
    $ sh bin/run_DeepRank.sh <target id> <file name>.fasta <model directory> <output folder>
 
    Example:
-   $ sh bin/run_DeepRank.sh T0980s1 examples/T0980s1.fasta examples/T0980s1 test_out/T0980s1_out
+   $ sh bin/run_DeepRank.sh T0980s1 /home/jh7x3/DeepRank/examples/T0980s1.fasta /home/jh7x3/DeepRank/examples/T0980s1 /home/jh7x3/DeepRank/test_out/T0980s1_out
    
-   $ sh bin/run_DeepRank_lite.sh T0980s1 examples/T0980s1.fasta examples/T0980s1 test_out/T0980s1_lite_out
+   $ sh bin/run_DeepRank_lite.sh T0980s1 /home/jh7x3/DeepRank/examples/T0980s1.fasta /home/jh7x3/DeepRank/examples/T0980s1 /home/jh7x3/DeepRank/test_out/T0980s1_lite_out
 ```
 
 **(11) Run individual methods for quality assessment**
