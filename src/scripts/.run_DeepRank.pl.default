@@ -383,7 +383,7 @@ if(-e "$ALL_scores/feature_dncon2_short-range.$targetname" and -e "$ALL_scores/f
 		die "Failed to run the prediction adding for gdt\n";
 	}
 
-	print("perl $H_script/P6_get_model2prediction.pl $dir_output/feat.txt  $dir_output/feat_gdt_predict.txt  $dir_output/DeepRank_gdt_prediction_unsort.txt\n");
+	#print("perl $H_script/P6_get_model2prediction.pl $dir_output/feat.txt  $dir_output/feat_gdt_predict.txt  $dir_output/DeepRank_gdt_prediction_unsort.txt\n");
 	$status = system("perl $H_script/P6_get_model2prediction.pl $dir_output/feat.txt  $dir_output/feat_gdt_predict.txt  $dir_output/DeepRank_gdt_prediction_unsort.txt");
 	if($status)# if failed, should we use at least one score?
 	{
@@ -504,6 +504,12 @@ if($native_score ne 'None')
 	system("perl $H_script/P4_evaluate_feature_by_targets_20180201.pl  $dir_output/feat_loss_predict_withall.txt  $dir_output/feature_analysis/  $dir_output/feat_loss_predict_withall.eva");
 }			
 =cut
+
+if(-d "$dir_output/mod2")
+{
+	`rm -rf $dir_output/mod2`;
+}
+print "\nFinal prediction: $dir_output/DeepRank_gdt_prediction.txt\n\n";
 
 $DeepRank_finishtime = time();
 $method_diff_hrs = ($DeepRank_finishtime - $DeepRank_starttime)/3600;

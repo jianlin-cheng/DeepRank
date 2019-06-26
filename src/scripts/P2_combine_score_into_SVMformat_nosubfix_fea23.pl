@@ -174,11 +174,6 @@ foreach $method (@all_features)
 	  chomp $model;
 	  
 	}
-	if($method eq 'feature_SVMQA')
-	{
-	  $score = pop @tmp;
-	  chomp $score;
-	}
 	
 	if(!defined($score))
 	{

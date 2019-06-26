@@ -1,7 +1,10 @@
 ### Main file
 src/run_DeepRank.sh
+src/run_DeepRank_lite.sh
 src/scripts/run_DeepRank.pl
+src/scripts/run_DeepRank_lite.pl
 src/scripts/P1_feature_generation_parallel.pl
+src/scripts/P1_feature_singleQA_lite_generation_parallel.pl
 
 src/scripts/CASP11_cal_not_norm_dope_score.pl
 src/scripts/CASP13_run_contact_energy.pl

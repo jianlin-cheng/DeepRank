@@ -35,5 +35,6 @@ installation/DeepRank_test_codes/T10_run-DeepRank-SBROD.sh
 installation/DeepRank_test_codes/T11_run-DeepRank-contact.sh
 
 
-
+# test
+installation/DeepRank_test_codes/test_DeepRank_all_parallel.pl
 

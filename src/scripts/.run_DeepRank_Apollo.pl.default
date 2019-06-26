@@ -348,6 +348,13 @@ while($check_iteration<4)
 	}
 }
 
+
+
+if(-d "$dir_output/mod2")
+{
+	`rm -rf $dir_output/mod2`;
+}
+
 $DeepRank_finishtime = time();
 $method_diff_hrs = ($DeepRank_finishtime - $DeepRank_starttime)/3600;
 

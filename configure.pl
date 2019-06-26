@@ -509,6 +509,7 @@ if(-d "$install_dir/tools/DeepQA/tools/sspro4")
 system("chmod +x $install_dir/installation/DeepRank_test_codes/*sh");
 
 system("cp $install_dir/src/run_DeepRank.sh $install_dir/bin/run_DeepRank.sh");
+system("cp $install_dir/src/run_DeepRank_lite.sh $install_dir/bin/run_DeepRank_lite.sh");
 system("chmod +x $install_dir/bin/*.sh");
 
 
