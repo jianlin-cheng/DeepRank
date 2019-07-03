@@ -131,7 +131,12 @@ system("chmod +x $install_dir/bin/run_DeepRank.sh");
 chdir("$install_dir/installation");
 `tar -zxf benchmark.tar.gz`;
 chdir("$install_dir/examples");
+`tar -zxf T0953s1.tar.gz`;
+`tar -zxf T0967.tar.gz`;
+`tar -zxf T0974s1.tar.gz`;
 `tar -zxf T0980s1.tar.gz`;
+`tar -zxf T1006.tar.gz`;
+`tar -zxf T1019s2.tar.gz`;
 
 
 print "#########  (7) Configuring DeepRank programs\n";
