@@ -33,7 +33,7 @@ else
 	printf "\nResults: SOFTWARE_PATH/test_out/T0980s1_DeepRank/DeepRank_gdt_prediction.txt\n\n"
 fi
 
-print "Validating the results\n\n";
+printf "Validating the results\n\n";
 perl SOFTWARE_PATH/installation/scripts/validate_predictions_final.pl T0980s1 SOFTWARE_PATH/test_out/T0980s1_DeepRank SOFTWARE_PATH/installation/benchmark/T0980s1
  
  
