@@ -483,26 +483,28 @@ if(-d $addr_scwrl4)
 
 
 
-if(-d "$install_dir/tools/DeepQA/tools/spine_X")
+if(-d "$DeepRank_db_tools_dir/tools/DeepQA/tools/spine_X")
 {
-	if(-l "$install_dir/tools/spine_X")
+	if(-l "$DeepRank_db_tools_dir/tools/spine_X")
 	{	
-		`rm $install_dir/tools/spine_X`;
+		`rm $DeepRank_db_tools_dir/tools/spine_X`;
 	}
-	`cp $install_dir/tools/DeepQA/tools/spine_X/DeepQA_spX.pl $install_dir/tools/DeepQA/tools/spine_X/spX.pl`;
-	`ln -s $install_dir/tools/DeepQA/tools/spine_X $install_dir/tools/spine_X`;
+	`cp $DeepRank_db_tools_dir/tools/DeepQA/tools/spine_X/DeepQA_spX.pl $DeepRank_db_tools_dir/tools/DeepQA/tools/spine_X/spX.pl`;
+	`ln -s $DeepRank_db_tools_dir/tools/DeepQA/tools/spine_X $DeepRank_db_tools_dir/tools/spine_X`;
 }
 
-if(-d "$install_dir/tools/DeepQA/tools/sspro4")
+if(-d "$DeepRank_db_tools_dir/tools/DeepQA/tools/sspro4")
 {
-	if(-l "$install_dir/tools/sspro4")
+	if(-l "$DeepRank_db_tools_dir/tools/sspro4")
 	{
-		`rm $install_dir/tools/sspro4`;
+		`rm $DeepRank_db_tools_dir/tools/sspro4`;
 	}
-	`ln -s $install_dir/tools/DeepQA/tools/sspro4 $install_dir/tools/sspro4`; 
+	`ln -s $DeepRank_db_tools_dir/tools/DeepQA/tools/sspro4 $DeepRank_db_tools_dir/tools/sspro4`; 
 }
 
-
+`chmod -R 755 $DeepRank_db_tools_dir/tools/spine_X`;
+`chmod -R 755 $DeepRank_db_tools_dir/tools/sspro4`;
+`chmod -R 755 $DeepRank_db_tools_dir/tools/DNCON2`; 
 
 
 ####### tools compilation 

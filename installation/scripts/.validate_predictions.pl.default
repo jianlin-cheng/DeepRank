@@ -250,10 +250,10 @@ foreach $subdir (sort @subdirs)
 		
 		#print "Evaluating $predict_file.eva\n";
 		
-		@eva_results = `python /home/jh7x3/DeepRank/src/scripts/python_lib/evaluate_feature_per_target.py  $predict_file.eva $targetid`;
+		@eva_results = `python $GLOBAL_PATH/src/scripts/python_lib/evaluate_feature_per_target.py  $predict_file.eva $targetid`;
 		if(@eva_results != 2)
 		{
-			print "Failed to run <python /home/jh7x3/DeepRank/src/scripts/python_lib/evaluate_feature_per_target.py  $predict_file.eva $targetid>\n";
+			print "Failed to run <python $GLOBAL_PATH/src/scripts/python_lib/evaluate_feature_per_target.py  $predict_file.eva $targetid>\n";
 			
 			next;
 		}
