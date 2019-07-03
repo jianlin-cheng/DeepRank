@@ -92,17 +92,8 @@ print "Start install DeepRank into <$install_dir>\n";
 
 
 
-print "\n#########  (1) Configuring tools\n";
 
-$option_list = "$install_dir/installation/DeepRank_configure_files/DeepRank_tools_list";
-
-if (! -f $option_list)
-{
-        die "\nOption file $option_list not exists.\n";
-}
-configure_tools($option_list,'tools',$DeepRank_db_tools_dir);
-
-print "\n#########  (2) Configuring scripts\n";
+print "\n#########  (1) Configuring scripts\n";
 
 $option_list = "$install_dir/installation/DeepRank_configure_files/DeepRank_scripts_list";
 
@@ -115,7 +106,7 @@ print "#########  Configuring scripts, done\n\n";
 
 
 
-print "#########  (4) Configuring examples\n";
+print "#########  (2) Configuring examples\n";
 
 $option_list = "$install_dir/installation/DeepRank_configure_files/DeepRank_examples_list";
 
@@ -134,244 +125,6 @@ system("chmod +x $install_dir/installation/DeepRank_test_codes/*sh");
 system("cp $install_dir/src/run_DeepRank.sh $install_dir/bin/run_DeepRank.sh");
 system("chmod +x $install_dir/bin/run_DeepRank.sh");
 
-
-
-$tooldir = $DeepRank_db_tools_dir.'/tools/DeepQA/';
-if(-d $tooldir)
-{
-	print "\n\n#########  Setting up DeepQA\n";
-	chdir $tooldir;
-	if(-f 'configure.pl')
-	{
-		$status = system("perl configure.pl 2>&1 &> /dev/null");
-		if($status){
-			die "Failed to run perl configure.pl \n";
-			exit(-1);
-		}
-	}else{
-		die "The configure.pl file for $tooldir doesn't exist, please contact us(Jie Hou: jh7x3\@mail.missouri.edu)\n";
-	}
-}
-
-######
-$tooldir = $DeepRank_db_tools_dir.'/tools/proq3/';
-if(-d $tooldir)
-{
-	print "\n#########  Setting up proq3\n"; 
-	chdir $tooldir;
-	if(-f 'configure.pl')
-	{
-		$status = system("perl configure.pl 2>&1 &> /dev/null");
-		if($status){
-			die "Failed to run perl configure.pl \n";
-			exit(-1);
-		}
-	}else{
-		die "The configure.pl file for $tooldir doesn't exist, please contact us(Jie Hou: jh7x3\@mail.missouri.edu)\n";
-	}
-}
-
-
-=pod
-
-my($addr_mod9v15) = $DeepRank_db_tools_dir."/tools/modeller-9.15/bin/mod9.15";
-if(-e $addr_mod9v15)
-{
-	print "\n#########  Setting up MODELLER 9v15 \n";
-	if (!-s $addr_mod9v15) {
-		die "Please check $addr_mod9v15, you can download the modeller and install it by yourself if the current one in the tool folder is not working well, the key is MODELIRANJE.  please install it to the folder tools/modeller-9.15, with the file mod9v7 in the bin directory\n";
-	}
-
-	my($deep_mod9v15) = $DeepRank_db_tools_dir."/tools/modeller-9.15/bin/modeller9v15local";
-	$OUT = new FileHandle ">$deep_mod9v15";
-	$IN=new FileHandle "$addr_mod9v15";
-	while(defined($line=<$IN>))
-	{
-			chomp($line);
-			@ttt = split(/\=/,$line);
-
-			if(@ttt>1 && $ttt[0] eq "MODINSTALL9v15")
-			{
-					print $OUT "MODINSTALL9v15=\"$DeepRank_db_tools_dir/tools/modeller-9.15\"\n";
-			}
-			else
-			{
-					print $OUT $line."\n";
-			}
-	}
-	$IN->close();
-	$OUT->close();
-	#system("chmod 777 $deep_mod9v16");
-	$modeller_conf = $DeepRank_db_tools_dir."/tools/modeller-9.15/modlib/modeller/config.py";
-	$OUT = new FileHandle ">$modeller_conf";
-	print $OUT "install_dir = r\'$DeepRank_db_tools_dir/tools/modeller-9.15/\'\n";
-	print $OUT "license = \'MODELIRANJE\'";
-	$OUT->close();
-	system("cp $deep_mod9v15 $addr_mod9v15");
-	print "Done\n";
-}
-=cut
-
-my($addr_mod9v16) = $DeepRank_db_tools_dir."/tools/modeller-9.16/bin/mod9.16";
-if(-e $addr_mod9v16)
-{
-	print "\n#########  Setting up MODELLER 9v16 \n";
-	if (!-s $addr_mod9v16) {
-		die "Please check $addr_mod9v16, you can download the modeller and install it by yourself if the current one in the tool folder is not working well, the key is MODELIRANJE.  please install it to the folder tools/modeller-9.16, with the file mod9v7 in the bin directory\n";
-	}
-
-	my($deep_mod9v16) = $DeepRank_db_tools_dir."/tools/modeller-9.16/bin/modeller9v16local";
-	$OUT = new FileHandle ">$deep_mod9v16";
-	$IN=new FileHandle "$addr_mod9v16";
-	while(defined($line=<$IN>))
-	{
-			chomp($line);
-			@ttt = split(/\=/,$line);
-
-			if(@ttt>1 && $ttt[0] eq "MODINSTALL9v16")
-			{
-					print $OUT "MODINSTALL9v16=\"$DeepRank_db_tools_dir/tools/modeller-9.16\"\n";
-			}
-			else
-			{
-					print $OUT $line."\n";
-			}
-	}
-	$IN->close();
-	$OUT->close();
-	#system("chmod 777 $deep_mod9v16");
-	$modeller_conf = $DeepRank_db_tools_dir."/tools/modeller-9.16/modlib/modeller/config.py";
-	$OUT = new FileHandle ">$modeller_conf";
-	print $OUT "install_dir = r\'$DeepRank_db_tools_dir/tools/modeller-9.16/\'\n";
-	print $OUT "license = \'MODELIRANJE\'";
-	$OUT->close();
-	#system("chmod 777 $modeller_conf");
-	system("cp $deep_mod9v16 $addr_mod9v16");
-	print "Done\n";
-}
-
-
-
-$addr_scwrl4 = $DeepRank_db_tools_dir."/tools/scwrl4";
-if(-d $addr_scwrl4)
-{
-	print "\n#########  Setting up scwrl4 \n";
-	$addr_scwrl_orig = $addr_scwrl4."/"."Scwrl4.ini";
-	$addr_scwrl_back = $addr_scwrl4."/"."Scwrl4.ini.back";
-	system("cp $addr_scwrl_orig $addr_scwrl_back");
-	@ttt = ();
-	$OUT = new FileHandle ">$addr_scwrl_orig";
-	$IN=new FileHandle "$addr_scwrl_back";
-	while(defined($line=<$IN>))
-	{
-		chomp($line);
-		@ttt = split(/\s+/,$line);
-		
-		if(@ttt>1 && $ttt[1] eq "FilePath")
-		{
-			print $OUT "\tFilePath\t=\t$addr_scwrl4/bbDepRotLib.bin\n"; 
-		}
-		else
-		{
-			print $OUT $line."\n";
-		}
-	}
-	$IN->close();
-	$OUT->close();
-	print "Done\n";
-}
-
-####### tools compilation 
-
-### install boost-1.55 
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start compile boost (will take ~20 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
-print OUT "cd boost_1_55_0\n\n";
-print OUT "./bootstrap.sh  --prefix=$DeepRank_db_tools_dir/tools/boost_1_55_0\n\n";
-print OUT "./b2\n\n";
-print OUT "./b2 install\n\n";
-close OUT;
-
-#### install OpenBlas
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P2_install_OpenBlas.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P2_install_OpenBlas.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start compile OpenBlas (will take ~5 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
-print OUT "cd OpenBLAS\n\n";
-print OUT "make clean\n\n";
-print OUT "make\n\n";
-print OUT "make PREFIX=$DeepRank_db_tools_dir/tools/OpenBLAS install\n\n";
-close OUT;
-
-
-#### install freecontact
-
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start compile freecontact (will take ~1 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools/DNCON2\n\n";
-print OUT "cd freecontact-1.0.21\n\n";
-print OUT "autoreconf -f -i\n\n";
-print OUT "make clean\n\n";
-print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_55_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_55_0/\n\n";
-print OUT "make\n\n";
-print OUT "make install\n\n";
-close OUT;
-
-
-#### create python virtual environment
-
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P4_python_virtual.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P5_python_virtual.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start install python virtual environment (will take ~1 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
-print OUT "rm -rf python_virtualenv\n\n";
-print OUT "virtualenv python_virtualenv\n\n";
-print OUT "source $DeepRank_db_tools_dir/tools/python_virtualenv/bin/activate\n\n";
-print OUT "pip install --upgrade pip\n\n";
-print OUT "pip install --upgrade numpy==1.12.1\n\n";
-print OUT "pip install --upgrade keras==1.2.2\n\n";
-print OUT "pip install --upgrade theano==0.9.0\n\n";
-print OUT "pip install --upgrade h5py\n\n";
-print OUT "pip install --upgrade matplotlib\n\n";
-print OUT "pip install --upgrade pandas\n\n";
-print OUT "pip install --upgrade sklearn\n\n";
-print OUT "pip install --upgrade plotly\n\n";
-print OUT "pip install --upgrade np_utils\n\n";
-print OUT "pip install --upgrade pillow\n\n";
-print OUT "NOW=\$(date +\"%m-%d-%Y\")\n\n";
-print OUT "mkdir -p ~/.keras\n\n";
-print OUT "cp ~/.keras/keras.json ~/.keras/keras.json.\$NOW.\$RANDOM\n\n";
-print OUT "cp $install_dir/installation/DeepRank_configure_files/keras_DeepRank.json ~/.keras/keras.json\n\n";
-close OUT;
-
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P5_python_virtual_keras2.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P5_python_virtual.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start install python virtual environment for keras2 (will take ~1 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
-print OUT "rm -rf python_virtualenv_keras2\n\n";
-print OUT "virtualenv python_virtualenv_keras2\n\n";
-print OUT "source $DeepRank_db_tools_dir/tools/python_virtualenv_keras2/bin/activate\n\n";
-print OUT "pip install --upgrade pip\n\n";
-print OUT "pip install --upgrade numpy\n\n";
-print OUT "pip install --upgrade keras\n\n";
-print OUT "pip install --upgrade Theano\n\n";
-print OUT "pip install --upgrade h5py\n\n";
-close OUT;
-
-#### install EMBOSS-6.6.0
-
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P6_install_EMBOSS.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P4_install_scwrl4.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start compile freecontact (will take ~3 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools/EMBOSS-6.6.0\n\n";
-print OUT "make clean\n\n";
-print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0\n\n";
-print OUT "make\n\n";
-print OUT "make install\n\n";
-close OUT;
 
 
 ### compress benchmark dataset
@@ -486,25 +239,6 @@ if(!(-e $method_file) or !(-e $option_list))
 
 }
 close OUT;
-
-if(-d "$install_dir/tools/DeepQA/tools/spine_X")
-{
-	if(-l "$install_dir/tools/spine_X")
-	{	
-		`rm $install_dir/tools/spine_X`;
-	}
-	`cp $install_dir/tools/DeepQA/tools/spine_X/DeepQA_spX.pl $install_dir/tools/DeepQA/tools/spine_X/spX.pl`;
-	`ln -s $install_dir/tools/DeepQA/tools/spine_X $install_dir/tools/spine_X`;
-}
-
-if(-d "$install_dir/tools/DeepQA/tools/sspro4")
-{
-	if(-l "$install_dir/tools/sspro4")
-	{
-		`rm $install_dir/tools/sspro4`;
-	}
-	`ln -s $install_dir/tools/DeepQA/tools/sspro4 $install_dir/tools/sspro4`; 
-}
 
 system("chmod +x $install_dir/installation/DeepRank_test_codes/*sh");
 
