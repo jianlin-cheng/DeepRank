@@ -245,7 +245,7 @@ foreach $file (sort @files)
 	@tmp2 = split(/\s+/,$benchmark_eva);
 	
 	
-	printf "%-40s\t", $feature_name;
+	printf "%-30s\t", $feature_name;
 	printf "%-20f\t", $tmp1[4];
 	printf "%-20f\t", $tmp2[4];
 	printf "%-20f\t", abs($tmp1[4] - $tmp2[4]);
