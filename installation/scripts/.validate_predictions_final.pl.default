@@ -38,7 +38,7 @@ $loss_benchmark = 0;
 $correlation_predict = 0;
 $correlation_benchmark = 0;
 	
-printf "\n%-40s\t", 'Method';
+printf "\n%-30s\t", 'Method';
 printf "%-20s\t", 'Predicted (Loss)';
 printf "%-20s\t", 'Benchmark (Loss)';
 printf "%-20s\t", 'Difference (Loss)';
@@ -274,7 +274,7 @@ $correlation_benchmark = sprintf("%.5f",$correlation_benchmark/$file_num);
 $diff = abs($loss_benchmark - $loss_predict);
 $rmsd_diff = abs($correlation_benchmark - $correlation_predict);
 
-printf "\n%-40s\t", 'Method';
+printf "\n%-30s\t", 'Method';
 printf "%-20s\t", 'Predicted (Loss)';
 printf "%-20s\t", 'Benchmark (Loss)';
 printf "%-20s\t", 'Difference (Loss)';
@@ -282,7 +282,7 @@ printf "%-20s\t", 'Predicted (Correlation)';
 printf "%-20s\t", 'Benchmark (Correlation)';
 printf "%-20s\n", 'Difference (Correlation)';
 
-printf "%-20s\t", 'Average';
+printf "%-30s\t", 'Average';
 printf "%-20f\t", $loss_predict;
 printf "%-20f\t", $loss_benchmark;
 printf "%-20f\t", $diff;
