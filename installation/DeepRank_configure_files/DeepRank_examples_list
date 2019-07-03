@@ -1,5 +1,10 @@
 # multicom
 installation/DeepRank_test_codes/T0-run-DeepRank-T0980s1.sh
+installation/DeepRank_test_codes/T0-run-DeepRank-T0953s1.sh
+installation/DeepRank_test_codes/T0-run-DeepRank-T0967.sh
+installation/DeepRank_test_codes/T0-run-DeepRank-T0974s1.sh
+installation/DeepRank_test_codes/T0-run-DeepRank-T1006.sh
+installation/DeepRank_test_codes/T0-run-DeepRank-T1019s2.sh
 
 # DeepQA
 installation/DeepRank_test_codes/T1_run-DeepRank-DeepQA.sh
