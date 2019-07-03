@@ -6,6 +6,9 @@ The deep learning method for ranking protein structural models
 
 ```
 git clone https://github.com/jianlin-cheng/DeepRank.git
+
+(If fail, try username) git clone https://huge200890@github.com/jianlin-cheng/DeepRank.git
+
 cd DeepRank
 ```
 

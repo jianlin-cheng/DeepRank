@@ -1,4 +1,13 @@
 #!/bin/bash
+#SBATCH -J  OPUS
+#SBATCH -o OPUS-%j.out
+#SBATCH --partition Lewis,hpc5,hpc4
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=2G
+#SBATCH --time 1-00:00
+
 
 mkdir -p /home/jh7x3/DeepRank/test_out/T0980s1_OPUS/
 cd /home/jh7x3/DeepRank/test_out/T0980s1_OPUS/
