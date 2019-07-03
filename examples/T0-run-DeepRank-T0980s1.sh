@@ -32,3 +32,8 @@ else
 	printf "\nJob successfully completed!"
 	printf "\nResults: /home/jh7x3/DeepRank/test_out/T0980s1_DeepRank/DeepRank_gdt_prediction.txt\n\n"
 fi
+
+print "Validating the results\n\n";
+perl /home/jh7x3/DeepRank/installation/scripts/validate_predictions_final.pl T0980s1 /home/jh7x3/DeepRank/test_out/T0980s1_DeepRank /home/jh7x3/DeepRank/installation/benchmark/T0980s1
+ 
+ 
