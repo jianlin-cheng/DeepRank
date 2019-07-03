@@ -20,8 +20,8 @@ a. edit method.list
     uncomment the methods that you would like to run in DeepRank method (i.e., DeepQA, Contact) 
 
 b. edit setup_database.pl
-    (i) Manually create folder for database (i.e., /home/DeepRank_db_tools/)
-    (ii) Set the path of variable '$DeepRank_db_tools_dir' for multicom databases and tools (i.e., /home/DeepRank_db_tools/).
+    (i) Manually create folder for database (i.e., /data/commons/DeepRank_db_tools/)
+    (ii) Set the path of variable '$DeepRank_db_tools_dir' for multicom databases and tools (i.e., /data/commons/DeepRank_db_tools/).
 
 c. perl setup_database.pl
 ```
@@ -34,7 +34,7 @@ Please refer to 'cite_methods_for_publication.txt' to cite the methods that you 
 ```
 a. edit configure.pl
 
-b. set the path of variable '$DeepRank_db_tools_dir' for multicom databases and tools (i.e., /home/DeepRank_db_tools/).
+b. set the path of variable '$DeepRank_db_tools_dir' for multicom databases and tools (i.e., /data/commons/DeepRank_db_tools/).
 
 c. save configure.pl
 
