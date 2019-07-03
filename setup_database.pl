@@ -345,7 +345,7 @@ if(-d $tooldir)
 	{
 		$status = system("perl configure.pl 2>&1 &> /dev/null");
 		if($status){
-			die "Failed to run perl configure.pl \n";
+			die "Failed to run perl configure.pl, possible reason is the permission conflict or incorrect software installation\nIf the database and tools have already been configured, repeated configuration is not necessary \n";
 			exit(-1);
 		}
 	}else{
@@ -363,7 +363,7 @@ if(-d $tooldir)
 	{
 		$status = system("perl configure.pl 2>&1 &> /dev/null");
 		if($status){
-			die "Failed to run perl configure.pl \n";
+			die "Failed to run perl configure.pl, possible reason is the permission conflict or incorrect software installation\nIf the database and tools have already been configured, repeated configuration is not necessary.\n";
 			exit(-1);
 		}
 	}else{
