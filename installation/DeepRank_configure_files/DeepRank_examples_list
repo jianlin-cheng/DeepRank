@@ -41,3 +41,4 @@ installation/DeepRank_test_codes/test_DeepRank_all_parallel.pl
 
 # common
 installation/scripts/validate_predictions.pl
+installation/DeepRank_test_codes/T99-run-validation.sh
