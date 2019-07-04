@@ -27,6 +27,14 @@ if(-e "$DeepRank_score")
 	`cp $DeepRank_score $scoredir/DeepRank.$targetid`;
 }
 
+
+$Benchmark_score = "$benchmark_dir/HumanQA_gdt_prediction.txt";
+if(-e "$DeepRank_score")
+{
+	print "Found $DeepRank_score\n";
+	`cp $Benchmark_score $benchmark_dir/ALL_scores/DeepRank.$targetid`;
+}
+
 print "\n---------------------------------------------------------------------------------------------------\n";
 opendir(FILES,"$scoredir") || die "Failed to open directory $scoredir\n";
 @files = readdir(FILES);
