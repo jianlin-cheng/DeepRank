@@ -31,7 +31,6 @@ if(-e "$DeepRank_score")
 $Benchmark_score = "$benchmark_dir/HumanQA_gdt_prediction.txt";
 if(-e "$DeepRank_score")
 {
-	print "Found $DeepRank_score\n";
 	`cp $Benchmark_score $benchmark_dir/ALL_scores/DeepRank.$targetid`;
 }
 
