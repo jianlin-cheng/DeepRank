@@ -128,7 +128,10 @@ open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P4_python_v
 print OUT "#!/bin/bash -e\n\n";
 print OUT "echo \" Start install python virtual environment (will take ~1 min)\"\n\n";
 print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
-print OUT "rm -rf python_virtualenv\n\n";
+print OUT "mkdir -p ~/.keras\n\n";
+print OUT "cp ~/.keras/keras.json ~/.keras/keras.json.\$NOW.\$RANDOM\n\n";
+print OUT "cp $install_dir/installation/DeepRank_configure_files/keras_DeepRank.json ~/.keras/keras.json\n\n";
+print OUT "#rm -rf python_virtualenv\n\n";
 print OUT "virtualenv python_virtualenv\n\n";
 print OUT "source $DeepRank_db_tools_dir/tools/python_virtualenv/bin/activate\n\n";
 print OUT "pip install --upgrade pip\n\n";
@@ -143,9 +146,6 @@ print OUT "pip install --upgrade plotly\n\n";
 print OUT "pip install --upgrade np_utils\n\n";
 print OUT "pip install --upgrade pillow\n\n";
 print OUT "NOW=\$(date +\"%m-%d-%Y\")\n\n";
-print OUT "mkdir -p ~/.keras\n\n";
-print OUT "cp ~/.keras/keras.json ~/.keras/keras.json.\$NOW.\$RANDOM\n\n";
-print OUT "cp $install_dir/installation/DeepRank_configure_files/keras_DeepRank.json ~/.keras/keras.json\n\n";
 close OUT;
 
 open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P5_python_virtual_keras2.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P5_python_virtual.sh\n";
