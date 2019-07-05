@@ -292,8 +292,8 @@ foreach $subdir (sort @subdirs)
 	$correlation_predict = sprintf("%.5f",$correlation_predict/$file_num);
 	$correlation_benchmark = sprintf("%.5f",$correlation_benchmark/$file_num);
 
-	$diff = abs($loss_benchmark - $loss_predict);
-	$rmsd_diff = abs($correlation_benchmark - $correlation_predict);
+	$diff = $loss_benchmark - $loss_predict;
+	$rmsd_diff = $correlation_benchmark - $correlation_predict;
 
 	printf "\n%-30s\t", 'Method';
 	printf "%-20s\t", 'Predicted (Loss)';
