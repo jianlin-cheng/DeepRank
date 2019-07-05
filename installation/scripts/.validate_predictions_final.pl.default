@@ -244,6 +244,7 @@ foreach $file (sort @files)
 		
 		next;
 	}
+	`rm $predict_file.eva`;
 	$predict_eva = shift @eva_results;
 	$benchmark_eva = shift @eva_results;
 	chomp $predict_eva;
