@@ -75,10 +75,12 @@ $tools_dir = "$DeepRank_db_tools_dir/tools";
 if(!-s $database_dir)
 {
 	`mkdir $database_dir`;
+	`chmod -R 755 $database_dir`;
 }
 if(!-s $tools_dir)
 {
 	`mkdir $tools_dir`;
+	`chmod -R 755 $tools_dir`;
 }
 
 
@@ -208,6 +210,7 @@ foreach $tool (@basic_tools)
 			`echo 'done' > $toolname/download.done`;
 		}
 		`rm $tool`;
+		`chmod -R 755 $toolname`;
 	}else{
 		die "Failed to download $tool from http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools, please contact chengji\@missouri.edu\n";
 	}
@@ -295,6 +298,7 @@ if(!(-e $method_file) or !(-e $method_info))
 						`echo 'done' > $toolname/download.done`;
 					}
 					`rm $tool`;
+					`chmod -R 755 $toolname`;
 				}else{
 					die "Failed to download $tool from http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools, please contact chengji\@missouri.edu\n";
 				}
@@ -341,6 +345,7 @@ if(!(-e $method_file) or !(-e $method_info))
 							`tar -xf uniprot20_2016_02.tgz`;
 							`echo 'done' > uniprot20_2016_02/download.done`;
 							`rm uniprot20_2016_02.tgz`;
+							`chmod -R 755 uniprot20_2016_02`;
 						}else{
 							die "Failed to download uniprot20_2016_02.tgz from http://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/old-releases/\n";
 						}
@@ -355,7 +360,8 @@ if(!(-e $method_file) or !(-e $method_info))
 				
 					`ln -s uniprot20_2016_02_a3m.ffdata uniprot20_2016_02_a3m_db`;
 					`ln -s uniprot20_2016_02_hhm.ffdata uniprot20_2016_02_hhm_db`;
-					
+					`chmod 755 uniprot20_2016_02_a3m_db`;
+					`chmod 755 uniprot20_2016_02_hhm_db`;
 					next;
 				}
 				
@@ -393,6 +399,7 @@ if(!(-e $method_file) or !(-e $method_info))
 						}
 						`gzip -d uniref90.fasta.gz`;
 						`$tools_dir/DNCON2/blast-2.2.26/bin/formatdb -i uniref90.fasta -o T -t uniref90 -n uniref90`;
+						`chmod -R 755 uniref90*`;
 					}
 					next;
 				}
@@ -404,6 +411,7 @@ if(!(-e $method_file) or !(-e $method_info))
 					
 					`echo 'done' > $dbname/download.done`;
 					`rm $db`;
+					`chmod -R 755 $dbname`;
 				}else{
 					die "Failed to download $db from http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/databases, please contact chengji\@missouri.edu\n";
 				}
