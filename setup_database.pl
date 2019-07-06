@@ -371,9 +371,10 @@ if(!(-e $method_file) or !(-e $method_info))
 					`ln -s uniprot20_2016_02_hhm.ffdata uniprot20_2016_02_hhm_db`;
 					`chmod 755 uniprot20_2016_02_a3m_db`;
 					`chmod 755 uniprot20_2016_02_hhm_db`;
+					chdir("$database_dir");
 					next;
 				}
-				
+				chdir("$database_dir");
 				$dbname = substr($db,0,index($db,'.tar.gz'));
 				if(-e "$database_dir/$dbname/download.done")
 				{
@@ -413,8 +414,10 @@ if(!(-e $method_file) or !(-e $method_info))
 						`$tools_dir/DNCON2/blast-2.2.26/bin/formatdb -i uniref90.fasta -o T -t uniref90 -n uniref90`;
 						`chmod -R 755 uniref90*`;
 					}
+					chdir("$database_dir");
 					next;
 				}
+				chdir("$database_dir");
 				`wget http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/databases/$db`;
 				if(-e "$db")
 				{
