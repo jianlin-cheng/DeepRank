@@ -199,7 +199,10 @@ foreach $tool (@basic_tools)
 			print "\t$toolname is done!\n";
 			next;
 	}
-	-e $tool || `rm $tool`;
+	if(-e $tool)
+	{
+		 `rm $tool`;
+	}
 	`wget http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools/$tool`;
 	if(-e "$tool")
 	{
@@ -285,7 +288,10 @@ if(!(-e $method_file) or !(-e $method_info))
 						print "\t$toolname is done!\n";
 						next;
 				}				
-				-e $tool || `rm $tool`;
+				if(-e $tool)
+				{
+					`rm $tool`;
+				}
 				`wget http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools/$tool`;
 				if(-e "$tool")
 				{
@@ -337,7 +343,10 @@ if(!(-e $method_file) or !(-e $method_info))
 					
 					}else{
 						print("\n\t\t#### Download uniprot20\n\n");
-						-e "uniprot20_2016_02.tgz" || `rm uniprot20_2016_02.tgz`;
+						if(-e "uniprot20_2016_02.tgz")
+						{
+							`rm uniprot20_2016_02.tgz`;
+						}
 						`wget http://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/old-releases/uniprot20_2016_02.tgz`;
 						if(-e "uniprot20_2016_02.tgz")
 						{
@@ -389,7 +398,10 @@ if(!(-e $method_file) or !(-e $method_info))
 						print "\tuniref90.fasta is found, start formating......\n";
 						`$tools_dir/DNCON2/blast-2.2.26/bin/formatdb -i uniref90.fasta -o T -t uniref90 -n uniref90`;
 					}else{
-						-e "uniref90.fasta.gz" || `rm uniref90.fasta.gz`;
+						if(-e "uniref90.fasta.gz")
+						{
+							`rm uniref90.fasta.gz`;
+						}
 						`wget ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz`;
 						if(-e "uniref90.fasta.gz")
 						{
