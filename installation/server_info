@@ -8,7 +8,7 @@ proq3_databases:None
 
 #### contact
 contact_tools:boost_1_55_0.tar.gz;OpenBLAS.tar.gz;DNCON2.tar.gz;SCRATCH-1D_1.1.tar.gz;
-contact_databases:uniprot20/uniprot20_2016_02;nr90-2012.tar.gz;uniref.tar.gz
+contact_databases:uniprot20/uniprot20_2016_02;nr90-2012.tar.gz;uniref.tar.gz;dncon2_uniref.tar.gz
 
 #### dope
 #dope_tools:modeller-9.15.tar.gz;
@@ -47,3 +47,6 @@ modfoldclust_databases:None
 Apollo_tools:q_score.tar.gz
 Apollo_databases:None
 
+### Local_ss_sa
+local_ss_sa_tools=spine_X.tar.gz;sspro4.tar.gz
+local_ss_sa_databases=human_nr.tar.gz

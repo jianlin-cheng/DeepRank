@@ -4,7 +4,13 @@ echo " Start install python virtual environment (will take ~1 min)"
 
 cd /data/commons/DeepRank_db_tools//tools
 
-rm -rf python_virtualenv
+mkdir -p ~/.keras
+
+cp ~/.keras/keras.json ~/.keras/keras.json.$NOW.$RANDOM
+
+cp /home/jh7x3/DeepRank//installation/DeepRank_configure_files/keras_DeepRank.json ~/.keras/keras.json
+
+#rm -rf python_virtualenv
 
 virtualenv python_virtualenv
 
@@ -33,10 +39,4 @@ pip install --upgrade np_utils
 pip install --upgrade pillow
 
 NOW=$(date +"%m-%d-%Y")
-
-mkdir -p ~/.keras
-
-cp ~/.keras/keras.json ~/.keras/keras.json.$NOW.$RANDOM
-
-cp /home/jh7x3/DeepRank//installation/DeepRank_configure_files/keras_DeepRank.json ~/.keras/keras.json
 

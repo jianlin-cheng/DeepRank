@@ -17,3 +17,9 @@ tools/proq3/paths.sh
 
 ### voronota
 tools/voronota_1_18_1877/run_voronota_batch.pl
+
+### spine_X
+tools/spine_X/spX.pl
+
+### sspro4
+tools/sspro4/configure.pl

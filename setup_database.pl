@@ -466,6 +466,19 @@ if(-d $tooldir)
 }
 
 
+print "#########  Setting up sspro4\n";
+$tooldir = $DeepRank_db_tools_dir.'/tools/sspro4/';
+chdir $tooldir;
+if(-f 'configure.pl')
+{
+	$status = system("perl configure.pl");
+	if($status){
+		die "Failed to run perl configure.pl \n";
+		exit(-1);
+	}
+}else{
+	die "The configure.pl file for $tooldir doesn't exist, please contact us(Jie Hou: jh7x3\@mail.missouri.edu)\n";
+}
 =pod
 
 my($addr_mod9v15) = $DeepRank_db_tools_dir."/tools/modeller-9.15/bin/mod9.15";
@@ -576,7 +589,7 @@ if(-d $addr_scwrl4)
 }
 
 
-
+=pod
 if(-d "$DeepRank_db_tools_dir/tools/DeepQA/tools/spine_X")
 {
 	if(-l "$DeepRank_db_tools_dir/tools/spine_X")
@@ -595,7 +608,7 @@ if(-d "$DeepRank_db_tools_dir/tools/DeepQA/tools/sspro4")
 	}
 	`ln -s $DeepRank_db_tools_dir/tools/DeepQA/tools/sspro4 $DeepRank_db_tools_dir/tools/sspro4`; 
 }
-
+=cut
 `chmod -R 755 $DeepRank_db_tools_dir/tools/spine_X`;
 `chmod -R 755 $DeepRank_db_tools_dir/tools/sspro4`;
 `chmod -R 755 $DeepRank_db_tools_dir/tools/DNCON2`; 
