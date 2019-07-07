@@ -748,9 +748,9 @@ if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
 
 
 ### change permission of SCRATCH, will write tmp file 
-if(-d "$multicom_db_tools_dir/tools/SCRATCH-1D_1.1")
+if(-d "$DeepRank_db_tools_dir/tools/SCRATCH-1D_1.1")
 {
-	`chmod -R 777 $multicom_db_tools_dir/tools/SCRATCH-1D_1.1`;
+	`chmod -R 777 $DeepRank_db_tools_dir/tools/SCRATCH-1D_1.1`;
 }
 print "\n\n";
 
