@@ -41,34 +41,11 @@ c. save configure.pl
 perl configure.pl
 ```
 
-**(4) Mannally configure tools (required)**
-*** one-time installation. If the path is same as before, the configurations can be skipped.
-```
-cd installation/DeepRank_manually_install_files
-
-$ sh ./P1_install_boost.sh 
-(** may take ~20 min)
-
-$ sh ./P2_install_OpenBlas.sh 
-(** take ~1 min)
-
-$ sh ./P3_install_freecontact.sh 
-(** take ~1 min)
-
-$ sh ./P4_python_virtual.sh 
-(** take ~1 min)
-
-$ sh ./P5_python_virtual_keras2.sh 
-(** take ~1 min)
-
-$ sh ./P6_install_EMBOSS.sh 
-(** take ~5 min)
-```
-
-**(5) Set theano as backend for keras (required)**
+**(4) Set theano as backend for keras (required)**
 
 Change the contents in '~/.keras/keras.json'. DNCON2 is currently running based on theano-compiled models.
 ```
+$ mkdir ~/.keras
 $ vi ~/.keras/keras.json
 
 
@@ -81,7 +58,7 @@ $ vi ~/.keras/keras.json
 ```
 
 
-**(6)  Install "zoo" package by launching R and typing install.packages("zoo") (assume R is pre-installed) **
+**(5)  Install "zoo" package by launching R and typing install.packages("zoo") (assume R is pre-installed) **
 
 ```
 $R
@@ -91,7 +68,7 @@ $R
 >q()
 ```
 
-**(7) Testing the individual tools in DeepRank (recommended)**
+**(6) Testing the individual tools in DeepRank (recommended)**
 
 ```
 cd installation/DeepRank_test_codes
@@ -105,7 +82,7 @@ b. Parallel tesing up to 5 jobs at same time
     
 ```
 
-**(8) Validate the individual predictons**
+**(7) Validate the individual predictons**
 
 ```
 
@@ -114,7 +91,7 @@ sh T99-run-validation.sh
 
 ```
 
-**(9) Testing the integrated DeepRank method (recommended)**
+**(8) Testing the integrated DeepRank method (recommended)**
 
 ```
 
@@ -123,7 +100,7 @@ sh T0-run-DeepRank-T0980s1.sh
 
 ```
 
-**(10) Run DeepRank for quality assessment**
+**(9) Run DeepRank for quality assessment**
 
 ```
    Usage:
@@ -135,7 +112,7 @@ sh T0-run-DeepRank-T0980s1.sh
    $ sh bin/run_DeepRank_lite.sh T0980s1 /home/jh7x3/DeepRank/examples/T0980s1.fasta /home/jh7x3/DeepRank/examples/T0980s1 /home/jh7x3/DeepRank/test_out/T0980s1_lite_out
 ```
 
-**(11) Run individual methods for quality assessment**
+**(10) Run individual methods for quality assessment**
 
 ```
 Examples:
