@@ -58,7 +58,7 @@ $ vi ~/.keras/keras.json
 ```
 
 
-**(5)  Install "zoo" package by launching R and typing install.packages("zoo") (assume R is pre-installed) **
+**(5)  Install "zoo" package by launching R and typing install.packages("zoo") (assume R (requires R >= 3.1.0) is pre-installed) **
 
 ```
 $R
