@@ -776,6 +776,10 @@ if(-d "$DeepRank_db_tools_dir/tools/SCRATCH-1D_1.1")
 {
 	`chmod -R 777 $DeepRank_db_tools_dir/tools/SCRATCH-1D_1.1`;
 }
+if(-d "$DeepRank_db_tools_dir/tools/DeepQA")
+{
+	`chmod -R 777 $DeepRank_db_tools_dir/tools/DeepQA`;
+}
 print "\n\n";
 
 
