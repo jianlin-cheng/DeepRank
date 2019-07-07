@@ -85,8 +85,11 @@ if(!-s $tools_dir)
 
 
 ####### tools compilation 
-
-### install boost-1.55 
+if(-e "$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh")
+{
+	`rm $install_dir/installation/DeepRank_manually_install_files/*sh`;
+}
+	### install boost-1.55 
 open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh\n";
 print OUT "#!/bin/bash -e\n\n";
 print OUT "echo \" Start compile boost (will take ~20 min)\"\n\n";
@@ -166,7 +169,7 @@ close OUT;
 
 #### install EMBOSS-6.6.0
 
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P6_install_EMBOSS.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P4_install_scwrl4.sh\n";
+open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P6_install_EMBOSS.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P6_install_EMBOSS.sh\n";
 print OUT "#!/bin/bash -e\n\n";
 print OUT "echo \" Start compile freecontact (will take ~3 min)\"\n\n";
 print OUT "cd $DeepRank_db_tools_dir/tools/EMBOSS-6.6.0\n\n";
