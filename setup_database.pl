@@ -770,6 +770,22 @@ if(! -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
 	print "\nR-3.2.0 is installed!\n\n";
 }
 
+#### install zoo package for proq3
+
+if(-d "$DeepRank_db_tools_dir/tools/proq3/")
+{	
+	chdir("$DeepRank_db_tools_dir/tools/proq3/");
+	if(!-e "zoo_1.8-2.tar.gz")
+	{
+		`wget http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools/zoo_1.8-2.tar.gz`;
+	}
+	open(TMPO,">$DeepRank_db_tools_dir/tools/proq3/install_zoo.R");
+	print TMPO "install.packages(\"$DeepRank_db_tools_dir/tools/proq3/zoo_1.8-2.tar.gz\")\n\n";
+	close TMPO;
+	print "\nStart install zoo package, may take ~1 min ($DeepRank_db_tools_dir/tools/R-3.2.0/bin/Rscript $DeepRank_db_tools_dir/tools/proq3/install_zoo.R)\n\n";
+	`$DeepRank_db_tools_dir/tools/R-3.2.0/bin/Rscript $DeepRank_db_tools_dir/tools/proq3/install_zoo.R`;
+}
+
 
 ### change permission of SCRATCH, will write tmp file 
 if(-d "$DeepRank_db_tools_dir/tools/SCRATCH-1D_1.1")

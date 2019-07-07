@@ -3,7 +3,7 @@ DeepQA_tools:DeepQA.tar.gz
 DeepQA_databases:None
 
 #### proq3
-proq3_tools:proq3.tar.gz;rosetta_2014.16.56682_bundle.tar.gz;EMBOSS-6.6.0.tar.gz
+proq3_tools:proq3.tar.gz;rosetta_2014.16.56682_bundle.tar.gz;EMBOSS-6.6.0.tar.gz;R-3.2.0.tar.gz
 proq3_databases:None
 
 #### contact
