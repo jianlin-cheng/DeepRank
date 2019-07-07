@@ -2,7 +2,7 @@
 
 echo " Start compile OpenBlas (will take ~5 min)"
 
-cd /data/commons/DeepRank_db_tools//tools
+cd /home/casp13/tmpwork/DeepRank_db/DeepRank_db_tools//tools
 
 cd OpenBLAS
 
@@ -10,5 +10,7 @@ make clean
 
 make
 
-make PREFIX=/data/commons/DeepRank_db_tools//tools/OpenBLAS install
+make PREFIX=/home/casp13/tmpwork/DeepRank_db/DeepRank_db_tools//tools/OpenBLAS install
+
+echo "installed" > /home/casp13/tmpwork/DeepRank_db/DeepRank_db_tools//tools/OpenBLAS/install.done
 
