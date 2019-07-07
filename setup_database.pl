@@ -440,7 +440,8 @@ if(!(-e $method_file) or !(-e $method_info))
 						{
 							`rm uniref90.fasta.gz`;
 						}
-						`wget ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz`;
+						#`wget ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz`;
+						`wget http://sysbio.rnet.missouri.edu/multicom_db_tools/databases/uniref/20190703/uniref90.fasta.gz`;
 						if(-e "uniref90.fasta.gz")
 						{
 							print "\tuniref90.fasta.gz is found, start extracting files\n";
