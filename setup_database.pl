@@ -432,7 +432,7 @@ if(!(-e $method_file) or !(-e $method_info))
 					`chmod -R 755 $dbname`;
 				}else{
 					die "Failed to download $db from http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/databases, please contact chengji\@missouri.edu\n";
-				}
+				} 
 			}
 			
 		}else{
