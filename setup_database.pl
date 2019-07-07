@@ -72,17 +72,25 @@ $database_dir = "$DeepRank_db_tools_dir/databases";
 $tools_dir = "$DeepRank_db_tools_dir/tools";
 
 
-if(!-s $database_dir)
+
+if(!-d $database_dir)
 {
-	`mkdir $database_dir`;
+	$status = system("mkdir $database_dir");
+	if($status)
+	{
+		die "Failed to create folder ($database_dir), check permission or folder path\n";
+	}
 	`chmod -R 755 $database_dir`;
 }
-if(!-s $tools_dir)
-{
-	`mkdir $tools_dir`;
+if(!-d $tools_dir)
+{ 
+	$status = system("mkdir $tools_dir");
+	if($status)
+	{
+		die "Failed to create folder ($tools_dir), check permission or folder path\n";
+	}
 	`chmod -R 755 $tools_dir`;
 }
-
 
 ####### tools compilation 
 if(-e "$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh")
@@ -366,14 +374,33 @@ if(!(-e $method_file) or !(-e $method_info))
 					chdir("$uniprot20_dir/uniprot20_2016_02/");
 					if(-l "uniprot20_2016_02_a3m_db")
 					{
-						`rm uniprot20_2016_02_a3m_db`; 
-						`rm uniprot20_2016_02_hhm_db`; 
+						
+						$status = system("rm uniprot20_2016_02_a3m_db");
+						if($status)
+						{
+							 die "Failed to remove file (uniprot20_2016_02_a3m_db), check the permission\n";
+						}
+						$status = system("rm uniprot20_2016_02_hhm_db");
+						if($status)
+						{
+							 die "Failed to remove file (uniprot20_2016_02_hhm_db), check the permission\n";
+						}
 					}
-				
-					`ln -s uniprot20_2016_02_a3m.ffdata uniprot20_2016_02_a3m_db`;
-					`ln -s uniprot20_2016_02_hhm.ffdata uniprot20_2016_02_hhm_db`;
+					
+					$status = system("ln -s uniprot20_2016_02_a3m.ffdata uniprot20_2016_02_a3m_db");
+					if($status)
+					{
+						 die "Failed to link database(uniprot20_2016_02_a3m_db), check the permission\n";
+					}
+					$status = system("ln -s uniprot20_2016_02_hhm.ffdata uniprot20_2016_02_hhm_db");
+					if($status)
+					{
+						 die "Failed to link database(uniprot20_2016_02_hhm_db), check the permission\n";
+					}
+					
 					`chmod 755 uniprot20_2016_02_a3m_db`;
 					`chmod 755 uniprot20_2016_02_hhm_db`;
+					
 					chdir("$database_dir");
 					next;
 				}
@@ -421,6 +448,10 @@ if(!(-e $method_file) or !(-e $method_info))
 					next;
 				}
 				chdir("$database_dir");
+				if(-e $db)
+				{
+					`rm $db`;
+				}
 				`wget http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/databases/$db`;
 				if(-e "$db")
 				{
