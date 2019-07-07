@@ -107,6 +107,7 @@ print OUT "cd boost_1_55_0\n\n";
 print OUT "./bootstrap.sh  --prefix=$DeepRank_db_tools_dir/tools/boost_1_55_0\n\n";
 print OUT "./b2\n\n";
 print OUT "./b2 install\n\n";
+print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/boost_1_55_0/install.done\n\n";
 close OUT;
 
 #### install OpenBlas
@@ -118,6 +119,7 @@ print OUT "cd OpenBLAS\n\n";
 print OUT "make clean\n\n";
 print OUT "make\n\n";
 print OUT "make PREFIX=$DeepRank_db_tools_dir/tools/OpenBLAS install\n\n";
+print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/OpenBLAS/install.done\n\n";
 close OUT;
 
 
@@ -133,6 +135,7 @@ print OUT "make clean\n\n";
 print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_55_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_55_0/\n\n";
 print OUT "make\n\n";
 print OUT "make install\n\n";
+print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
 close OUT;
 
 
@@ -160,6 +163,7 @@ print OUT "pip install --upgrade plotly\n\n";
 print OUT "pip install --upgrade np_utils\n\n";
 print OUT "pip install --upgrade pillow\n\n";
 print OUT "NOW=\$(date +\"%m-%d-%Y\")\n\n";
+print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/python_virtualenv/install.done\n\n";
 close OUT;
 
 open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P5_python_virtual_keras2.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P5_python_virtual.sh\n";
@@ -174,6 +178,7 @@ print OUT "pip install --upgrade numpy\n\n";
 print OUT "pip install --upgrade keras\n\n";
 print OUT "pip install --upgrade Theano\n\n";
 print OUT "pip install --upgrade h5py\n\n";
+print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/python_virtualenv_keras2/install.done\n\n";
 close OUT;
 
 #### install EMBOSS-6.6.0
@@ -186,6 +191,7 @@ print OUT "make clean\n\n";
 print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0\n\n";
 print OUT "make\n\n";
 print OUT "make install\n\n";
+print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done\n\n";
 close OUT;
 
 
@@ -667,11 +673,77 @@ if(-d "$DeepRank_db_tools_dir/tools/DeepQA/tools/sspro4")
 	`ln -s $DeepRank_db_tools_dir/tools/DeepQA/tools/sspro4 $DeepRank_db_tools_dir/tools/sspro4`; 
 }
 =cut
-`chmod -R 755 $DeepRank_db_tools_dir/tools/spine_X`;
-`chmod -R 755 $DeepRank_db_tools_dir/tools/sspro4`;
-`chmod -R 755 $DeepRank_db_tools_dir/tools/DNCON2`; 
+if(-d "$DeepRank_db_tools_dir/tools/spine_X")
+{
+	`chmod -R 755 $DeepRank_db_tools_dir/tools/spine_X`;
+}
+if(-d "$DeepRank_db_tools_dir/tools/sspro4")
+{
+	`chmod -R 755 $DeepRank_db_tools_dir/tools/sspro4`;
+}
+if(-d "$DeepRank_db_tools_dir/tools/DNCON2")
+{
+	`chmod -R 755 $DeepRank_db_tools_dir/tools/DNCON2`; 
+}
 
 
+print "\n#########  Start install tools in folder 'installation/DeepRank_manually_install_files/'\n\n";
+### install boost-1.55 
+chdir("$install_dir/installation/DeepRank_manually_install_files/");
+if(! -e "$DeepRank_db_tools_dir/tools/boost_1_55_0/install.done")
+{
+	print "\nStart install boost in , may take ~20 min (sh P1_install_boost.sh &> P1_install_boost.log)\n\n";
+	`sh P1_install_boost.sh &> P1_install_boost.log`;
+}else{
+	print "\nboost-1.55 is installed!\n\n";
+}
+
+
+#### install OpenBlas
+if(! -e "$DeepRank_db_tools_dir/tools/OpenBLAS/install.done")
+{
+	print "\nStart install OpenBlas, may take ~1 min (sh P2_install_OpenBlas.sh &> P2_install_OpenBlas.log)\n\n";
+	`sh P2_install_OpenBlas.sh &> P2_install_OpenBlas.log`;
+}else{
+	print "\nOpenBLAS is installed!\n\n";
+}
+
+
+#### install freecontact
+if(! -e "$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done")
+{
+	print "\nStart install freecontact, may take ~1 min (sh P3_install_freecontact.sh &> P3_install_freecontact.log)\n\n";
+	`sh P3_install_freecontact.sh &> P3_install_freecontact.log`;
+}else{
+	print "\nfreecontact-1.0.21 is installed!\n\n";
+}
+
+
+#### create python virtual environment
+if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv/install.done")
+{
+	print "\nStart create python virtual environment, may take ~1 min (sh P4_python_virtual.sh &> P4_python_virtual.log)\n\n";
+	`sh P4_python_virtual.sh &> P4_python_virtual.log`;
+}else{
+	print "\npython virtual environment is installed!\n\n";
+}
+if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv_keras2/install.done")
+{
+	print "\nStart create python virtual environment, may take ~1 min (sh P5_python_virtual_keras2.sh &> P5_python_virtual_keras2.log)\n\n";
+	`sh P5_python_virtual_keras2.sh &> P5_python_virtual_keras2.log`;
+}else{
+	print "\npython virtual environment is installed!\n\n";
+}
+
+#### install EMBOSS-6.6.0
+
+if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
+{
+	print "\nStart install EMBOSS-6.6.0, may take ~1 min (sh EMBOSS-6.6.0.sh &> EMBOSS-6.6.0.log)\n\n";
+	`sh EMBOSS-6.6.0.sh &> EMBOSS-6.6.0.log`;
+}else{
+	print "\nEMBOSS-6.6.0 is installed!\n\n";
+}
 
 
 print "\n\n";
