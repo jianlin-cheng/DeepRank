@@ -57,17 +57,6 @@ $ vi ~/.keras/keras.json
 }
 ```
 
-
-**(5)  Install "zoo" package by launching R and typing install.packages("zoo") (assume R (requires R >= 3.1.0) is pre-installed) **
-
-```
-$R
-
->install.packages("zoo")
->library("zoo")
->q()
-```
-
 **(6) Testing the individual tools in DeepRank (recommended)**
 
 ```
