@@ -55,12 +55,13 @@ if ( substr($DeepRank_db_tools_dir, length($DeepRank_db_tools_dir) - 1, 1) ne "/
         $DeepRank_db_tools_dir .= "/";
 }
 
+=pod
 if (prompt_yn("DeepRank database will be installed into <$DeepRank_db_tools_dir> ")){
 
 }else{
 	die "The installation is cancelled!\n";
 }
-
+=cut
 
 print "Start install DeepRank into <$DeepRank_db_tools_dir>\n"; 
 
@@ -193,7 +194,7 @@ close OUT;
 print("\n#### (1) Download basic tools\n\n");
 
 chdir($tools_dir);
-$basic_tools_list = "scwrl4.tar.gz;TMscore_32.tar.gz;";
+$basic_tools_list = "scwrl4.tar.gz;TMscore_32.tar.gz";
 @basic_tools = split(';',$basic_tools_list);
 foreach $tool (@basic_tools)
 {
