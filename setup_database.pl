@@ -194,6 +194,18 @@ print OUT "make install\n\n";
 print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done\n\n";
 close OUT;
 
+#### install R-3.2.0.tar.gz
+
+open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P7_install_R-3.2.0.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P7_install_R-3.2.0.sh\n";
+print OUT "#!/bin/bash -e\n\n";
+print OUT "echo \" Start compile R-3.2.0 (will take ~3 min)\"\n\n";
+print OUT "cd $DeepRank_db_tools_dir/tools/R-3.2.0\n\n";
+print OUT "make clean\n\n";
+print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/R-3.2.0  --with-readline=no --with-x=no\n\n";
+print OUT "make\n\n";
+print OUT "make install\n\n";
+print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/R-3.2.0/install.done\n\n";
+close OUT;
 
 
 #### (1) Download basic tools
@@ -440,7 +452,8 @@ if(!(-e $method_file) or !(-e $method_info))
 						{
 							`rm uniref90.fasta.gz`;
 						}
-						`wget ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz`;
+						#`wget ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz`;
+						`wget http://sysbio.rnet.missouri.edu/multicom_db_tools/databases/uniref/20190703/uniref90.fasta.gz`;
 						if(-e "uniref90.fasta.gz")
 						{
 							print "\tuniref90.fasta.gz is found, start extracting files\n";
@@ -746,6 +759,27 @@ if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
 }
 
 
+
+#### install R-3.2.0.tar.gz
+
+if(! -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
+{
+	print "\nStart install R-3.2.0, may take ~10 min (sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log)\n\n";
+	`sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log`;
+}else{
+	print "\nR-3.2.0 is installed!\n\n";
+}
+
+
+### change permission of SCRATCH, will write tmp file 
+if(-d "$DeepRank_db_tools_dir/tools/SCRATCH-1D_1.1")
+{
+	`chmod -R 777 $DeepRank_db_tools_dir/tools/SCRATCH-1D_1.1`;
+}
+if(-d "$DeepRank_db_tools_dir/tools/DeepQA")
+{
+	`chmod -R 777 $DeepRank_db_tools_dir/tools/DeepQA`;
+}
 print "\n\n";
 
 
