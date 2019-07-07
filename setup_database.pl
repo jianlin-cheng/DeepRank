@@ -739,8 +739,8 @@ if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv_keras2/install.done")
 
 if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
 {
-	print "\nStart install EMBOSS-6.6.0, may take ~1 min (sh EMBOSS-6.6.0.sh &> EMBOSS-6.6.0.log)\n\n";
-	`sh EMBOSS-6.6.0.sh &> EMBOSS-6.6.0.log`;
+	print "\nStart install EMBOSS-6.6.0, may take ~1 min (sh P6_install_EMBOSS.sh &> P6_install_EMBOSS.log)\n\n";
+	`sh P6_install_EMBOSS.sh &> P6_install_EMBOSS.log`;
 }else{
 	print "\nEMBOSS-6.6.0 is installed!\n\n";
 }
