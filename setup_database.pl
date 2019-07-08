@@ -666,6 +666,24 @@ if(-d $addr_scwrl4)
 }
 
 
+$tooldir = $DeepRank_db_tools_dir.'/tools/SCRATCH-1D_1.1/';
+if(-d $tooldir)
+{
+	print "\n#########  Setting up SCRATCH \n";
+	chdir $tooldir;
+	if(-f 'install.pl')
+	{
+		$status = system("perl install.pl");
+		if($status){
+			die "Failed to run perl install.pl \n";
+			exit(-1);
+		}
+	}else{
+		die "The configure.pl file for $tooldir doesn't exist, please contact us(Jie Hou: jh7x3\@mail.missouri.edu)\n";
+	}
+}
+
+
 =pod
 if(-d "$DeepRank_db_tools_dir/tools/DeepQA/tools/spine_X")
 {
@@ -768,6 +786,22 @@ if(! -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
 	`sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log`;
 }else{
 	print "\nR-3.2.0 is installed!\n\n";
+}
+
+#### install zoo package for proq3
+
+if(-d "$DeepRank_db_tools_dir/tools/proq3/")
+{	
+	chdir("$DeepRank_db_tools_dir/tools/proq3/");
+	if(!-e "zoo_1.8-2.tar.gz")
+	{
+		`wget http://sysbio.rnet.missouri.edu/bdm_download/DeepRank_db_tools/tools/zoo_1.8-2.tar.gz`;
+	}
+	open(TMPO,">$DeepRank_db_tools_dir/tools/proq3/install_zoo.R");
+	print TMPO "install.packages(\"$DeepRank_db_tools_dir/tools/proq3/zoo_1.8-2.tar.gz\")\n\n";
+	close TMPO;
+	print "\nStart install zoo package, may take ~1 min ($DeepRank_db_tools_dir/tools/R-3.2.0/bin/Rscript $DeepRank_db_tools_dir/tools/proq3/install_zoo.R)\n\n";
+	`$DeepRank_db_tools_dir/tools/R-3.2.0/bin/Rscript $DeepRank_db_tools_dir/tools/proq3/install_zoo.R`;
 }
 
 
