@@ -666,6 +666,24 @@ if(-d $addr_scwrl4)
 }
 
 
+$tooldir = $DeepRank_db_tools_dir.'/tools/SCRATCH-1D_1.1/';
+if(-d $tooldir)
+{
+	print "\n#########  Setting up SCRATCH \n";
+	chdir $tooldir;
+	if(-f 'install.pl')
+	{
+		$status = system("perl install.pl");
+		if($status){
+			die "Failed to run perl install.pl \n";
+			exit(-1);
+		}
+	}else{
+		die "The configure.pl file for $tooldir doesn't exist, please contact us(Jie Hou: jh7x3\@mail.missouri.edu)\n";
+	}
+}
+
+
 =pod
 if(-d "$DeepRank_db_tools_dir/tools/DeepQA/tools/spine_X")
 {
