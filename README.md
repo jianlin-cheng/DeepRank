@@ -57,18 +57,7 @@ $ vi ~/.keras/keras.json
 }
 ```
 
-
-**(5)  Install "zoo" package by launching R and typing install.packages("zoo") (assume R (requires R >= 3.1.0) is pre-installed) **
-
-```
-$R
-
->install.packages("zoo")
->library("zoo")
->q()
-```
-
-**(6) Testing the individual tools in DeepRank (recommended)**
+**(5) Testing the individual tools in DeepRank (recommended)**
 
 ```
 cd installation/DeepRank_test_codes
@@ -82,7 +71,7 @@ b. Parallel tesing up to 5 jobs at same time
     
 ```
 
-**(7) Validate the individual predictons**
+**(6) Validate the individual predictons**
 
 ```
 
@@ -91,7 +80,7 @@ sh T99-run-validation.sh
 
 ```
 
-**(8) Testing the integrated DeepRank method (recommended)**
+**(7) Testing the integrated DeepRank method (recommended)**
 
 ```
 
@@ -100,7 +89,7 @@ sh T0-run-DeepRank-T0980s1.sh
 
 ```
 
-**(9) Run DeepRank for quality assessment**
+**(8) Run DeepRank for quality assessment**
 
 ```
    Usage:
@@ -112,7 +101,7 @@ sh T0-run-DeepRank-T0980s1.sh
    $ sh bin/run_DeepRank_lite.sh T0980s1 /home/jh7x3/DeepRank/examples/T0980s1.fasta /home/jh7x3/DeepRank/examples/T0980s1 /home/jh7x3/DeepRank/test_out/T0980s1_lite_out
 ```
 
-**(10) Run individual methods for quality assessment**
+**(9) Run individual methods for quality assessment**
 
 ```
 Examples:
