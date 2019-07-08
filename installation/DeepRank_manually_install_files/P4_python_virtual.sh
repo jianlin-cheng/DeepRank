@@ -2,7 +2,7 @@
 
 echo " Start install python virtual environment (will take ~1 min)"
 
-cd /home/casp13/tmpwork/DeepRank_db/DeepRank_db_tools//tools
+cd /home/casp14/DeepRank_db_tools//tools
 
 mkdir -p ~/.keras
 
@@ -14,7 +14,7 @@ cp /home/jh7x3/DeepRank//installation/DeepRank_configure_files/keras_DeepRank.js
 
 virtualenv python_virtualenv
 
-source /home/casp13/tmpwork/DeepRank_db/DeepRank_db_tools//tools/python_virtualenv/bin/activate
+source /home/casp14/DeepRank_db_tools//tools/python_virtualenv/bin/activate
 
 pip install --upgrade pip
 
@@ -40,5 +40,5 @@ pip install --upgrade pillow
 
 NOW=$(date +"%m-%d-%Y")
 
-echo "installed" > /home/casp13/tmpwork/DeepRank_db/DeepRank_db_tools//tools/python_virtualenv/install.done
+echo "installed" > /home/casp14/DeepRank_db_tools//tools/python_virtualenv/install.done
 

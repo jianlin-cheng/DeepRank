@@ -9,7 +9,7 @@
 #																					#
 # Set directory of DeepRank databases and tools								        #
 
-$DeepRank_db_tools_dir = "/home/casp13/tmpwork/DeepRank_db/DeepRank_db_tools/";							        
+$DeepRank_db_tools_dir = "/home/casp14/DeepRank_db_tools/";							        
 						        
 
 ######################## !!! End of customize settings !!! ##########################
