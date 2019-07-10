@@ -841,7 +841,7 @@ if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv_keras2/install.done")
 
 #### install EMBOSS-6.6.0
 chdir("$install_dir/installation/DeepRank_manually_install_files/");
-if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
+if(-d "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0" and ! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
 {
 	print "\nStart install EMBOSS-6.6.0, may take ~10 min (sh P6_install_EMBOSS.sh &> P6_install_EMBOSS.log)\n\n";
 	`sh P6_install_EMBOSS.sh &> P6_install_EMBOSS.log`;
@@ -853,7 +853,7 @@ if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
 
 #### install R-3.2.0.tar.gz
 chdir("$install_dir/installation/DeepRank_manually_install_files/");
-if(! -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
+if(-d "$DeepRank_db_tools_dir/tools/R-3.2.0" and ! -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
 {
 	print "\nStart install R-3.2.0, may take ~10 min (sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log)\n\n";
 	`sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log`;
