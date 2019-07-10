@@ -800,7 +800,7 @@ if($gcc_version[0] ==4 and $gcc_version[1]<6) #gcc 4.6
 	}
 }
 
-
+chdir("$install_dir/installation/MULTICOM_manually_install_files/");
 #### install OpenBlas
 if(! -e "$DeepRank_db_tools_dir/tools/OpenBLAS/install.done")
 {
@@ -810,7 +810,7 @@ if(! -e "$DeepRank_db_tools_dir/tools/OpenBLAS/install.done")
 	print "\nOpenBLAS is installed!\n\n";
 }
 
-
+chdir("$install_dir/installation/MULTICOM_manually_install_files/");
 #### install freecontact
 if(! -e "$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done")
 {
@@ -820,7 +820,7 @@ if(! -e "$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done")
 	print "\nfreecontact-1.0.21 is installed!\n\n";
 }
 
-
+chdir("$install_dir/installation/MULTICOM_manually_install_files/");
 #### create python virtual environment
 if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv/install.done")
 {
@@ -829,6 +829,8 @@ if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv/install.done")
 }else{
 	print "\npython virtual environment is installed!\n\n";
 }
+
+chdir("$install_dir/installation/MULTICOM_manually_install_files/");
 if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv_keras2/install.done")
 {
 	print "\nStart create python virtual environment, may take ~1 min (sh P5_python_virtual_keras2.sh &> P5_python_virtual_keras2.log)\n\n";
@@ -838,7 +840,7 @@ if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv_keras2/install.done")
 }
 
 #### install EMBOSS-6.6.0
-
+chdir("$install_dir/installation/MULTICOM_manually_install_files/");
 if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
 {
 	print "\nStart install EMBOSS-6.6.0, may take ~10 min (sh P6_install_EMBOSS.sh &> P6_install_EMBOSS.log)\n\n";
@@ -850,7 +852,7 @@ if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
 
 
 #### install R-3.2.0.tar.gz
-
+chdir("$install_dir/installation/MULTICOM_manually_install_files/");
 if(! -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
 {
 	print "\nStart install R-3.2.0, may take ~10 min (sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log)\n\n";
