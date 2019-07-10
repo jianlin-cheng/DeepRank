@@ -98,7 +98,8 @@ if(-e "$install_dir/installation/DeepRank_manually_install_files/P1_install_boos
 {
 	`rm $install_dir/installation/DeepRank_manually_install_files/*sh`;
 }
-	### install boost-1.55 
+=pod
+### install boost-1.55 
 open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh\n";
 print OUT "#!/bin/bash -e\n\n";
 print OUT "echo \" Start compile boost (will take ~20 min)\"\n\n";
@@ -109,6 +110,19 @@ print OUT "./b2\n\n";
 print OUT "./b2 install\n\n";
 print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/boost_1_55_0/install.done\n\n";
 close OUT;
+=cut
+### install boost-1.38 
+open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh\n";
+print OUT "#!/bin/bash -e\n\n";
+print OUT "echo \" Start compile boost (will take ~20 min)\"\n\n";
+print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
+print OUT "cd boost_1_38_0\n\n";
+print OUT "./configure  --prefix=$DeepRank_db_tools_dir/tools/boost_1_38_0\n\n";
+print OUT "make\n\n";
+print OUT "make install\n\n";
+print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/boost_1_38_0/install.done\n\n";
+close OUT;
+
 
 #### install OpenBlas
 open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P2_install_OpenBlas.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P2_install_OpenBlas.sh\n";
@@ -122,8 +136,8 @@ print OUT "make PREFIX=$DeepRank_db_tools_dir/tools/OpenBLAS install\n\n";
 print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/OpenBLAS/install.done\n\n";
 close OUT;
 
-
-#### install freecontact
+=pod
+#### install freecontact  using boost 1.55
 
 open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh\n";
 print OUT "#!/bin/bash -e\n\n";
@@ -133,6 +147,21 @@ print OUT "cd freecontact-1.0.21\n\n";
 print OUT "autoreconf -f -i\n\n";
 print OUT "make clean\n\n";
 print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_55_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_55_0/\n\n";
+print OUT "make\n\n";
+print OUT "make install\n\n";
+print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
+close OUT;
+=cut
+#### install freecontact  using boost 1.38
+
+open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh\n";
+print OUT "#!/bin/bash -e\n\n";
+print OUT "echo \" Start compile freecontact (will take ~1 min)\"\n\n";
+print OUT "cd $DeepRank_db_tools_dir/tools/DNCON2\n\n";
+print OUT "cd freecontact-1.0.21\n\n";
+print OUT "autoreconf -f -i\n\n";
+print OUT "make clean\n\n";
+print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_38_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_38_0/include/boost_1_38_0\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_38_0/include/boost_1_38_0\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_38_0/\n\n";
 print OUT "make\n\n";
 print OUT "make install\n\n";
 print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";

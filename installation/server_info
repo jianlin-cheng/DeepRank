@@ -7,7 +7,7 @@ proq3_tools:proq3.tar.gz;rosetta_2014.16.56682_bundle.tar.gz;EMBOSS-6.6.0.tar.gz
 proq3_databases:None
 
 #### contact
-contact_tools:boost_1_55_0.tar.gz;OpenBLAS.tar.gz;DNCON2.tar.gz;SCRATCH-1D_1.1.tar.gz;
+contact_tools:boost_1_55_0.tar.gz;boost_1_38_0.tar.gz;OpenBLAS.tar.gz;DNCON2.tar.gz;SCRATCH-1D_1.1.tar.gz;
 contact_databases:uniprot20/uniprot20_2016_02;nr90-2012.tar.gz;uniref.tar.gz;dncon2_uniref.tar.gz
 
 #### dope
