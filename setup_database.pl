@@ -857,7 +857,7 @@ if(-d "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0")
 chdir("$install_dir/installation/DeepRank_manually_install_files/");
 if(-d "$DeepRank_db_tools_dir/tools/R-3.2.0")
 {
-	if( -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
+	if( ! -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
 	{
 		print "\nStart install R-3.2.0, may take ~10 min (sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log)\n\n";
 		`sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log`;
