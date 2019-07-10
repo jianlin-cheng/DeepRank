@@ -775,13 +775,29 @@ if(-d "$DeepRank_db_tools_dir/tools/DNCON2")
 
 print "\n#########  Start install tools in folder 'installation/DeepRank_manually_install_files/'\n\n";
 ### install boost-1.55 
-chdir("$install_dir/installation/DeepRank_manually_install_files/");
-if(! -e "$DeepRank_db_tools_dir/tools/boost_1_55_0/install.done")
+chdir("$install_dir/installation/MULTICOM_manually_install_files/");
+if($gcc_version[0] ==4 and $gcc_version[1]<6) #gcc 4.6
 {
-	print "\nStart install boost, may take ~20 min (sh P1_install_boost.sh &> P1_install_boost.log)\n\n";
-	`sh P1_install_boost.sh &> P1_install_boost.log`;
+	if(! -e "$DeepRank_db_tools_dir/tools/boost_1_38_0/install.done")
+	{
+		print "\nStart install boost_1.38, may take ~20 min (sh P1_install_boost.sh &> P1_install_boost.log)\n\n";
+		`sh P1_install_boost.sh &> P1_install_boost.log`;
+		if(-d "$DeepRank_db_tools_dir/tools/boost_1_55_0")
+		{
+			`mv $DeepRank_db_tools_dir/tools/boost_1_55_0 $DeepRank_db_tools_dir/tools/boost_1_55_0_original`;
+			`ln -s $DeepRank_db_tools_dir/tools/boost_1_38_0 $DeepRank_db_tools_dir/tools/boost_1_55_0`;
+		}
+	}else{
+		print "\nboost-1.55 is installed!\n\n";
+	}
 }else{
-	print "\nboost-1.55 is installed!\n\n";
+	if(! -e "$DeepRank_db_tools_dir/tools/boost_1_55_0/install.done")
+	{
+		print "\nStart install boost_1.55, may take ~20 min (sh P1_install_boost.sh &> P1_install_boost.log)\n\n";
+		`sh P1_install_boost.sh &> P1_install_boost.log`;
+	}else{
+		print "\nboost-1.55 is installed!\n\n";
+	}
 }
 
 
