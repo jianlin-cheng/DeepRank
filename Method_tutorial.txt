@@ -78,3 +78,6 @@ Usage: /home/jh7x3/DeepRank//bin/P11-run-DeepRank-contact.sh <target id> <fasta>
 
 	** Example: /home/jh7x3/DeepRank//bin/P11-run-DeepRank-contact.sh T0980s1 /home/jh7x3/DeepRank//examples/T0980s1.fasta /home/jh7x3/DeepRank//examples/T0980s1 /home/jh7x3/DeepRank//test_out/T0980s1_contact
 
+
+################################################################# Method 13: local_ss_sa  #################################################################
+

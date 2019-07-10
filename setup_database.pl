@@ -44,7 +44,11 @@ print " OK!\n";
 
 if(!(-d $DeepRank_db_tools_dir))
 {
-	`mkdir $DeepRank_db_tools_dir`;
+	$status = system("mkdir $DeepRank_db_tools_dir");
+	if($status)
+	{
+		die "Failed to create folder $DeepRank_db_tools_dir\n\n";
+	}
 }
 $DeepRank_db_tools_dir=abs_path($DeepRank_db_tools_dir);
 
