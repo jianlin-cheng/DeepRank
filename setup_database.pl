@@ -595,18 +595,21 @@ if(-d $tooldir)
 }
 
 
-print "#########  Setting up sspro4\n";
 $tooldir = $DeepRank_db_tools_dir.'/tools/sspro4/';
-chdir $tooldir;
-if(-f 'configure.pl')
+if(-d $tooldir)
 {
-	$status = system("perl configure.pl");
-	if($status){
-		die "Failed to run perl configure.pl \n";
-		exit(-1);
+	print "#########  Setting up sspro4\n";
+	chdir $tooldir;
+	if(-f 'configure.pl')
+	{
+		$status = system("perl configure.pl");
+		if($status){
+			die "Failed to run perl configure.pl \n";
+			exit(-1);
+		}
+	}else{
+		die "The configure.pl file for $tooldir doesn't exist, please contact us(Jie Hou: jh7x3\@mail.missouri.edu)\n";
 	}
-}else{
-	die "The configure.pl file for $tooldir doesn't exist, please contact us(Jie Hou: jh7x3\@mail.missouri.edu)\n";
 }
 =pod
 
