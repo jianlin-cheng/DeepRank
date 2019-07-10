@@ -44,7 +44,11 @@ print " OK!\n";
 
 if(!(-d $DeepRank_db_tools_dir))
 {
-	`mkdir $DeepRank_db_tools_dir`;
+	$status = system("mkdir $DeepRank_db_tools_dir");
+	if($status)
+	{
+		die "Failed to create folder $DeepRank_db_tools_dir\n\n";
+	}
 }
 $DeepRank_db_tools_dir=abs_path($DeepRank_db_tools_dir);
 
@@ -98,30 +102,79 @@ if(-e "$install_dir/installation/DeepRank_manually_install_files/P1_install_boos
 {
 	`rm $install_dir/installation/DeepRank_manually_install_files/*sh`;
 }
-=pod
-### install boost-1.55 
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start compile boost (will take ~20 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
-print OUT "cd boost_1_55_0\n\n";
-print OUT "./bootstrap.sh  --prefix=$DeepRank_db_tools_dir/tools/boost_1_55_0\n\n";
-print OUT "./b2\n\n";
-print OUT "./b2 install\n\n";
-print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/boost_1_55_0/install.done\n\n";
-close OUT;
-=cut
+
+##### check gcc version
+
+$gcc_v = `gcc -dumpversion`;
+chomp $gcc_v;
+@gcc_version = split(/\./,$gcc_v);
+if($gcc_version[0] != 4)
+{
+	print "!!!! Warning: gcc 4.X.X is recommended for boost installation, currently is $gcc_v\n\n";
+	sleep(2);
+	
+}
+
+if($gcc_version[0] ==4 and $gcc_version[1]<6) #gcc 4.6
+{
+	print "\nGCC $gcc_v is used, install boost-1.38.00\n\n";
 ### install boost-1.38 
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start compile boost (will take ~20 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
-print OUT "cd boost_1_38_0\n\n";
-print OUT "./configure  --prefix=$DeepRank_db_tools_dir/tools/boost_1_38_0\n\n";
-print OUT "make\n\n";
-print OUT "make install\n\n";
-print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/boost_1_38_0/install.done\n\n";
-close OUT;
+	open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh\n";
+	print OUT "#!/bin/bash -e\n\n";
+	print OUT "echo \" Start compile boost (will take ~20 min)\"\n\n";
+	print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
+	print OUT "cd boost_1_38_0\n\n";
+	print OUT "./configure  --prefix=$DeepRank_db_tools_dir/tools/boost_1_38_0\n\n";
+	print OUT "make\n\n";
+	print OUT "make install\n\n";
+	print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/boost_1_38_0/install.done\n\n";
+	close OUT; 
+	
+	#### install freecontact  using boost 1.38
+
+	open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh\n";
+	print OUT "#!/bin/bash -e\n\n";
+	print OUT "echo \" Start compile freecontact (will take ~1 min)\"\n\n";
+	print OUT "cd $DeepRank_db_tools_dir/tools/DNCON2\n\n";
+	print OUT "cd freecontact-1.0.21\n\n";
+	print OUT "autoreconf -f -i\n\n";
+	print OUT "make clean\n\n";
+	print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_38_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_38_0/include/boost-1_38\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_38_0/include/boost-1_38\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_38_0/\n\n";
+	print OUT "make\n\n";
+	print OUT "make install\n\n";
+	print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
+	close OUT;
+	
+}else{
+	### install boost-1.55 
+	open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P1_install_boost.sh\n";
+	print OUT "#!/bin/bash -e\n\n";
+	print OUT "echo \" Start compile boost (will take ~20 min)\"\n\n";
+	print OUT "cd $DeepRank_db_tools_dir/tools\n\n";
+	print OUT "cd boost_1_55_0\n\n";
+	print OUT "./bootstrap.sh  --prefix=$DeepRank_db_tools_dir/tools/boost_1_55_0\n\n";
+	print OUT "./b2\n\n";
+	print OUT "./b2 install\n\n";
+	print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/boost_1_55_0/install.done\n\n";
+	close OUT;
+	
+	#### install freecontact  using boost 1.55
+
+	open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh\n";
+	print OUT "#!/bin/bash -e\n\n";
+	print OUT "echo \" Start compile freecontact (will take ~1 min)\"\n\n";
+	print OUT "cd $DeepRank_db_tools_dir/tools/DNCON2\n\n";
+	print OUT "cd freecontact-1.0.21\n\n";
+	print OUT "autoreconf -f -i\n\n";
+	print OUT "make clean\n\n";
+	print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_55_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_55_0/\n\n";
+	print OUT "make\n\n";
+	print OUT "make install\n\n";
+	print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
+	close OUT;
+}	
+
+
 
 
 #### install OpenBlas
@@ -136,36 +189,6 @@ print OUT "make PREFIX=$DeepRank_db_tools_dir/tools/OpenBLAS install\n\n";
 print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/OpenBLAS/install.done\n\n";
 close OUT;
 
-=pod
-#### install freecontact  using boost 1.55
-
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start compile freecontact (will take ~1 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools/DNCON2\n\n";
-print OUT "cd freecontact-1.0.21\n\n";
-print OUT "autoreconf -f -i\n\n";
-print OUT "make clean\n\n";
-print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_55_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_55_0/\n\n";
-print OUT "make\n\n";
-print OUT "make install\n\n";
-print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
-close OUT;
-=cut
-#### install freecontact  using boost 1.38
-
-open(OUT,">$install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh") || die "Failed to open file $install_dir/installation/DeepRank_manually_install_files/P3_install_freecontact.sh\n";
-print OUT "#!/bin/bash -e\n\n";
-print OUT "echo \" Start compile freecontact (will take ~1 min)\"\n\n";
-print OUT "cd $DeepRank_db_tools_dir/tools/DNCON2\n\n";
-print OUT "cd freecontact-1.0.21\n\n";
-print OUT "autoreconf -f -i\n\n";
-print OUT "make clean\n\n";
-print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_38_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_38_0/include/boost_1_38_0\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_38_0/include/boost_1_38_0\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_38_0/\n\n";
-print OUT "make\n\n";
-print OUT "make install\n\n";
-print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
-close OUT;
 
 
 #### create python virtual environment
@@ -843,6 +866,56 @@ if(-d "$DeepRank_db_tools_dir/tools/DeepQA")
 {
 	`chmod -R 777 $DeepRank_db_tools_dir/tools/DeepQA`;
 }
+
+
+### set up the boost environment for DNCON2
+if(-e "$DeepRank_db_tools_dir/tools/DNCON2/dncon2-v1.0.sh")
+{
+	`mv $DeepRank_db_tools_dir/tools/DNCON2/dncon2-v1.0.sh $DeepRank_db_tools_dir/tools/DNCON2/dncon2-v1.0.sh.old`;
+	open(TMPI,"$DeepRank_db_tools_dir/tools/DNCON2/dncon2-v1.0.sh.old");
+	open(TMPO,">$DeepRank_db_tools_dir/tools/DNCON2/dncon2-v1.0.sh");
+	open(TMPT,">$DeepRank_db_tools_dir/tools/DNCON2/test_freecontact.sh");
+	
+	if($gcc_version[0] ==4 and $gcc_version[1]<6) #gcc 4.6
+	{
+		while(<TMPI>)
+		{
+			$line = $_;
+			chomp $line;
+			if(index($line,'boost_1_55_0')>=0)
+			{
+				$line =~ s/boost_1_55_0/boost_1_38_0/g;
+			}
+			print TMPO "$line\n"; 
+		}
+		
+		print TMPT "#!/bin/bash -e\n\n";
+		print TMPT "export LD_LIBRARY_PATH=$DeepRank_db_tools_dir/tools/boost_1_38_0/lib/:$DeepRank_db_tools_dir/tools/OpenBLAS:\$LD_LIBRARY_PATH\n\n";
+		print TMPT "$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/bin/freecontact < $install_dir/examples/T1006.aln\n\n";
+	}else{
+		while(<TMPI>)
+		{
+			$line = $_;
+			chomp $line;
+			if(index($line,'boost_1_38_0')>=0)
+			{
+				$line =~ s/boost_1_38_0/boost_1_55_0/g;
+			}
+			print TMPO "$line\n"; 
+		}
+		
+		print TMPT "#!/bin/bash -e\n\n";
+		print TMPT "export LD_LIBRARY_PATH=$DeepRank_db_tools_dir/tools/boost_1_55_0/lib/:$DeepRank_db_tools_dir/tools/OpenBLAS:\$LD_LIBRARY_PATH\n\n";
+		print TMPT "$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/bin/freecontact < $install_dir/examples/T1006.aln\n\n"; 
+	}
+	close TMPI;
+	close TMPO;
+	close TMPT;
+	
+}
+
+
+
 print "\n\n";
 
 
