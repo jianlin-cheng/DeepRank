@@ -595,18 +595,21 @@ if(-d $tooldir)
 }
 
 
-print "#########  Setting up sspro4\n";
 $tooldir = $DeepRank_db_tools_dir.'/tools/sspro4/';
-chdir $tooldir;
-if(-f 'configure.pl')
+if(-d $tooldir)
 {
-	$status = system("perl configure.pl");
-	if($status){
-		die "Failed to run perl configure.pl \n";
-		exit(-1);
+	print "#########  Setting up sspro4\n";
+	chdir $tooldir;
+	if(-f 'configure.pl')
+	{
+		$status = system("perl configure.pl");
+		if($status){
+			die "Failed to run perl configure.pl \n";
+			exit(-1);
+		}
+	}else{
+		die "The configure.pl file for $tooldir doesn't exist, please contact us(Jie Hou: jh7x3\@mail.missouri.edu)\n";
 	}
-}else{
-	die "The configure.pl file for $tooldir doesn't exist, please contact us(Jie Hou: jh7x3\@mail.missouri.edu)\n";
 }
 =pod
 
@@ -773,15 +776,31 @@ if(-d "$DeepRank_db_tools_dir/tools/DNCON2")
 print "\n#########  Start install tools in folder 'installation/DeepRank_manually_install_files/'\n\n";
 ### install boost-1.55 
 chdir("$install_dir/installation/DeepRank_manually_install_files/");
-if(! -e "$DeepRank_db_tools_dir/tools/boost_1_55_0/install.done")
+if($gcc_version[0] ==4 and $gcc_version[1]<6) #gcc 4.6
 {
-	print "\nStart install boost in , may take ~20 min (sh P1_install_boost.sh &> P1_install_boost.log)\n\n";
-	`sh P1_install_boost.sh &> P1_install_boost.log`;
+	if(! -e "$DeepRank_db_tools_dir/tools/boost_1_38_0/install.done")
+	{
+		print "\nStart install boost_1.38, may take ~20 min (sh P1_install_boost.sh &> P1_install_boost.log)\n\n";
+		`sh P1_install_boost.sh &> P1_install_boost.log`;
+		if(-d "$DeepRank_db_tools_dir/tools/boost_1_55_0")
+		{
+			`mv $DeepRank_db_tools_dir/tools/boost_1_55_0 $DeepRank_db_tools_dir/tools/boost_1_55_0_original`;
+			`ln -s $DeepRank_db_tools_dir/tools/boost_1_38_0 $DeepRank_db_tools_dir/tools/boost_1_55_0`;
+		}
+	}else{
+		print "\nboost-1.38 is installed!\n\n";
+	}
 }else{
-	print "\nboost-1.55 is installed!\n\n";
+	if(! -e "$DeepRank_db_tools_dir/tools/boost_1_55_0/install.done")
+	{
+		print "\nStart install boost_1.55, may take ~20 min (sh P1_install_boost.sh &> P1_install_boost.log)\n\n";
+		`sh P1_install_boost.sh &> P1_install_boost.log`;
+	}else{
+		print "\nboost-1.55 is installed!\n\n";
+	}
 }
 
-
+chdir("$install_dir/installation/DeepRank_manually_install_files/");
 #### install OpenBlas
 if(! -e "$DeepRank_db_tools_dir/tools/OpenBLAS/install.done")
 {
@@ -791,7 +810,7 @@ if(! -e "$DeepRank_db_tools_dir/tools/OpenBLAS/install.done")
 	print "\nOpenBLAS is installed!\n\n";
 }
 
-
+chdir("$install_dir/installation/DeepRank_manually_install_files/");
 #### install freecontact
 if(! -e "$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done")
 {
@@ -801,7 +820,7 @@ if(! -e "$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done")
 	print "\nfreecontact-1.0.21 is installed!\n\n";
 }
 
-
+chdir("$install_dir/installation/DeepRank_manually_install_files/");
 #### create python virtual environment
 if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv/install.done")
 {
@@ -810,6 +829,8 @@ if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv/install.done")
 }else{
 	print "\npython virtual environment is installed!\n\n";
 }
+
+chdir("$install_dir/installation/DeepRank_manually_install_files/");
 if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv_keras2/install.done")
 {
 	print "\nStart create python virtual environment, may take ~1 min (sh P5_python_virtual_keras2.sh &> P5_python_virtual_keras2.log)\n\n";
@@ -819,27 +840,31 @@ if(! -e "$DeepRank_db_tools_dir/tools/python_virtualenv_keras2/install.done")
 }
 
 #### install EMBOSS-6.6.0
-
-if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
+chdir("$install_dir/installation/DeepRank_manually_install_files/");
+if(-d "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0")
 {
-	print "\nStart install EMBOSS-6.6.0, may take ~10 min (sh P6_install_EMBOSS.sh &> P6_install_EMBOSS.log)\n\n";
-	`sh P6_install_EMBOSS.sh &> P6_install_EMBOSS.log`;
-}else{
-	print "\nEMBOSS-6.6.0 is installed!\n\n";
+	if(! -e "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0/install.done")
+	{
+		print "\nStart install EMBOSS-6.6.0, may take ~10 min (sh P6_install_EMBOSS.sh &> P6_install_EMBOSS.log)\n\n";
+		`sh P6_install_EMBOSS.sh &> P6_install_EMBOSS.log`;
+	}else{
+		print "\nEMBOSS-6.6.0 is installed!\n\n";
+	}
 }
-
 
 
 #### install R-3.2.0.tar.gz
-
-if(! -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
+chdir("$install_dir/installation/DeepRank_manually_install_files/");
+if(-d "$DeepRank_db_tools_dir/tools/R-3.2.0")
 {
-	print "\nStart install R-3.2.0, may take ~10 min (sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log)\n\n";
-	`sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log`;
-}else{
-	print "\nR-3.2.0 is installed!\n\n";
+	if( -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
+	{
+		print "\nStart install R-3.2.0, may take ~10 min (sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log)\n\n";
+		`sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log`;
+	}else{
+		print "\nR-3.2.0 is installed!\n\n";
+	}
 }
-
 #### install zoo package for proq3
 
 if(-d "$DeepRank_db_tools_dir/tools/proq3/")
