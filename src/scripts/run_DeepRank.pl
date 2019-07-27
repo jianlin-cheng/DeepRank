@@ -286,7 +286,7 @@ while($check_iteration<4)
 		
 		@tmp = split(/\s++/,$line);
 		$model = $tmp[0];
-		$score = $tmp[1];
+		#$score = $tmp[1];
 		
 		
 		if($method eq 'feature_SBROD')
