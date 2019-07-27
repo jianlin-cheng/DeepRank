@@ -142,7 +142,13 @@ if($gcc_version[0] ==4 and $gcc_version[1]<6) #gcc 4.6
 	print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_38_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_38_0/include/boost-1_38\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_38_0/include/boost-1_38\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_38_0/\n\n";
 	print OUT "make\n\n";
 	print OUT "make install\n\n";
-	print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
+	
+	print OUT "if [[ -f \"bin/freecontact\" ]]; then\n";
+	print OUT "\techo \"bin/freecontact exists\"\n";
+	print OUT "\techo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
+	print OUT "else\n\n";
+	print OUT "\techo \"bin/freecontact doesn't exist, check the installation\"\n";
+	print OUT "fi\n\n";
 	close OUT;
 	
 }else{
@@ -170,7 +176,13 @@ if($gcc_version[0] ==4 and $gcc_version[1]<6) #gcc 4.6
 	print OUT "./configure --prefix=$DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21 LDFLAGS=\"-L$DeepRank_db_tools_dir/tools/OpenBLAS/lib -L$DeepRank_db_tools_dir/tools/boost_1_55_0/lib\" CFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\"  CPPFLAGS=\"-I$DeepRank_db_tools_dir/tools/OpenBLAS/include -I$DeepRank_db_tools_dir/tools/boost_1_55_0/include\" --with-boost=$DeepRank_db_tools_dir/tools/boost_1_55_0/\n\n";
 	print OUT "make\n\n";
 	print OUT "make install\n\n";
-	print OUT "echo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
+	
+	print OUT "if [[ -f \"bin/freecontact\" ]]; then\n";
+	print OUT "\techo \"bin/freecontact exists\"\n";
+	print OUT "\techo \"installed\" > $DeepRank_db_tools_dir/tools/DNCON2/freecontact-1.0.21/install.done\n\n";
+	print OUT "else\n\n";
+	print OUT "\techo \"bin/freecontact doesn't exist, check the installation\"\n";
+	print OUT "fi\n\n";
 	close OUT;
 }	
 
@@ -857,7 +869,7 @@ if(-d "$DeepRank_db_tools_dir/tools/EMBOSS-6.6.0")
 chdir("$install_dir/installation/DeepRank_manually_install_files/");
 if(-d "$DeepRank_db_tools_dir/tools/R-3.2.0")
 {
-	if( -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
+	if( ! -e "$DeepRank_db_tools_dir/tools/R-3.2.0/install.done")
 	{
 		print "\nStart install R-3.2.0, may take ~10 min (sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log)\n\n";
 		`sh P7_install_R-3.2.0.sh &> P7_install_R-3.2.0.log`;
@@ -936,6 +948,9 @@ if(-e "$DeepRank_db_tools_dir/tools/DNCON2/dncon2-v1.0.sh")
 	close TMPI;
 	close TMPO;
 	close TMPT;
+	
+	`chmod 755 $DeepRank_db_tools_dir/tools/DNCON2/dncon2-v1.0.sh`;
+	`chmod 755 $DeepRank_db_tools_dir/tools/DNCON2/test_freecontact.sh`;
 	
 }
 
