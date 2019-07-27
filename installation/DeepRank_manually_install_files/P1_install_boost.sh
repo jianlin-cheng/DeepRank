@@ -4,13 +4,13 @@ echo " Start compile boost (will take ~20 min)"
 
 cd /home/casp14/DeepRank_db_tools//tools
 
-cd boost_1_55_0
+cd boost_1_38_0
 
-./bootstrap.sh  --prefix=/home/casp14/DeepRank_db_tools//tools/boost_1_55_0
+./configure  --prefix=/home/casp14/DeepRank_db_tools//tools/boost_1_38_0
 
-./b2
+make
 
-./b2 install
+make install
 
-echo "installed" > /home/casp14/DeepRank_db_tools//tools/boost_1_55_0/install.done
+echo "installed" > /home/casp14/DeepRank_db_tools//tools/boost_1_38_0/install.done
 
