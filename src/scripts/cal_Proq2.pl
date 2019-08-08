@@ -1,7 +1,7 @@
 #! /usr/bin/perl -w
 #
-$ENV{'LD_LIBRARY_PATH'}.=':/home/jh7x3/DeepRank/tools/rosetta_2014.16.56682_bundle/main/source/build/external/release/linux/2.6/64/x86/gcc/4.4/default/';
-$ENV{'LD_LIBRARY_PATH'}.=':/home/jh7x3/DeepRank/tools/rosetta_2014.16.56682_bundle/main/source/build/src/release/linux/2.6/64/x86/gcc/4.4/default/';
+$ENV{'LD_LIBRARY_PATH'}.=':/storage/htc/bdm/jh7x3/DeepRank/tools/rosetta_2014.16.56682_bundle/main/source/build/external/release/linux/2.6/64/x86/gcc/4.4/default/';
+$ENV{'LD_LIBRARY_PATH'}.=':/storage/htc/bdm/jh7x3/DeepRank/tools/rosetta_2014.16.56682_bundle/main/source/build/src/release/linux/2.6/64/x86/gcc/4.4/default/';
  
  require 5.003; # need this version of Perl or newer
  use English; # use English names, not cryptic ones

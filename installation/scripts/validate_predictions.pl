@@ -11,7 +11,7 @@ $targetid = $ARGV[0];
 $test_dir = $ARGV[1];
 $benchmark_dir = $ARGV[2]; #installation/benchmark/T0980s1/
 
-$GLOBAL_PATH="/home/jh7x3/DeepRank/";
+$GLOBAL_PATH="/storage/htc/bdm/jh7x3/DeepRank/";
 
 
 opendir(DIR,"$test_dir") || die "Failed to open directory $test_dir\n";

@@ -17,7 +17,7 @@
 
 
  ############## Revise the path ########################
-$DeepRank_install = "/home/jh7x3/DeepRank/";
+$DeepRank_install = "/storage/htc/bdm/jh7x3/DeepRank/";
 $H_script = "$DeepRank_install/src/scripts";
 $H_tool = "$DeepRank_install/tools";
 

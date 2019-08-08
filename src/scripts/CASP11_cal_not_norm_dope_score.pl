@@ -30,10 +30,10 @@ because of this document, I don't want to know about it. Unless it's amusing.
  my($addr_output)=abs_path($ARGV[1]);
 
  ############### modeller is needed, so add this part ############
- #$ENV{'PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.15/bin';
- $ENV{'PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.16/bin';
- #$ENV{'LD_LIBRARY_PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.15/lib/x86_64-intel8';
- $ENV{'LD_LIBRARY_PATH'}.=':/home/jh7x3/DeepRank/tools/modeller-9.16/lib/x86_64-intel8';
+ #$ENV{'PATH'}.=':/storage/htc/bdm/jh7x3/DeepRank/tools/modeller-9.15/bin';
+ $ENV{'PATH'}.=':/storage/htc/bdm/jh7x3/DeepRank/tools/modeller-9.16/bin';
+ #$ENV{'LD_LIBRARY_PATH'}.=':/storage/htc/bdm/jh7x3/DeepRank/tools/modeller-9.15/lib/x86_64-intel8';
+ $ENV{'LD_LIBRARY_PATH'}.=':/storage/htc/bdm/jh7x3/DeepRank/tools/modeller-9.16/lib/x86_64-intel8';
  #################################################################
 
 ##########################################################################################################

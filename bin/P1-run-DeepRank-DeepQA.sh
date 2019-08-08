@@ -43,10 +43,10 @@ fi
 mkdir -p $outputfolder
 cd $outputfolder
 
-export LD_LIBRARY_PATH=/home/jh7x3/DeepRank/tools/DeepQA/libs:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/storage/htc/bdm/jh7x3/DeepRank/tools/DeepQA/libs:$LD_LIBRARY_PATH
 
-echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_DeepQA.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
-perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_DeepQA.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  DeepQA.log
+echo "perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_DeepQA.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
+perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_DeepQA.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  DeepQA.log
 
 
 printf "\nFinished.."
@@ -54,7 +54,7 @@ printf "\nCheck log file <$outputfolder/DeepQA.log>\n\n"
 
 
 if [[ ! -f "$outputfolder/ALL_scores/feature_DeepQA.$targetid" ]];then 
-	printf "!!!!! Failed to run DeepQA, check the installation </home/jh7x3/DeepRank/src/scripts/run_DeepRank_DeepQA.pl>\n\n"
+	printf "!!!!! Failed to run DeepQA, check the installation </storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_DeepQA.pl>\n\n"
 else
 	printf "\nJob successfully completed!"
 	cp $outputfolder/ALL_scores/feature_DeepQA.$targetid $outputfolder/DeepQA_prediction.$targetid

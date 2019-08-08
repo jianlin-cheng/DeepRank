@@ -6,7 +6,7 @@ Created on Wed Feb 22 21:37:04 2017
 """
 import sys
 import os
-sys.path.append('/home/jh7x3/DeepRank/src/scripts/python_lib/')  
+sys.path.append('/storage/htc/bdm/jh7x3/DeepRank/src/scripts/python_lib/')  
 from numpy import *
 from Data_loading import import_SVM
 #from Model_training import train_efficient_complex_win_filter_layer_opt

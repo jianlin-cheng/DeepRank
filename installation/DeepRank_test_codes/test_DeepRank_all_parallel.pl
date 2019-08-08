@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
-$test_script_dir= '/home/jh7x3/DeepRank/installation/DeepRank_test_codes';
-$test_out_dir= '/home/jh7x3/DeepRank/test_out';
+$test_script_dir= '/storage/htc/bdm/jh7x3/DeepRank/installation/DeepRank_test_codes';
+$test_out_dir= '/storage/htc/bdm/jh7x3/DeepRank/test_out';
 
 $num = @ARGV;
 if($num ==0)

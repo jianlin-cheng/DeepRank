@@ -46,7 +46,7 @@ foreach $target (sort keys %train_target_list)
   print "grep $target  $feature_summary > $workdir/$target.txt\n";
   `grep $target  $feature_summary > $workdir/$target.txt`;
   
-  print "python /home/jh7x3/DeepRank/src/scripts/python_lib/evaluate_feature_per_target.py $workdir/$target.txt $target >> $resultfile\n";
-	`python /home/jh7x3/DeepRank/src/scripts/python_lib/evaluate_feature_per_target.py $workdir/$target.txt $target >> $resultfile`;
+  print "python /storage/htc/bdm/jh7x3/DeepRank/src/scripts/python_lib/evaluate_feature_per_target.py $workdir/$target.txt $target >> $resultfile\n";
+	`python /storage/htc/bdm/jh7x3/DeepRank/src/scripts/python_lib/evaluate_feature_per_target.py $workdir/$target.txt $target >> $resultfile`;
 	
 }

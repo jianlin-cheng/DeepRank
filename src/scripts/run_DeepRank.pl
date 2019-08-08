@@ -18,7 +18,7 @@ our %AA1TO3 = reverse %AA3TO1;
 
 
 ############## Revise the path ########################
-$DeepRank_install = "/home/jh7x3/DeepRank/";
+$DeepRank_install = "/storage/htc/bdm/jh7x3/DeepRank/";
 $H_script = "$DeepRank_install/src/scripts";
 $H_tool = "$DeepRank_install/tools";
 
@@ -95,6 +95,7 @@ foreach $model (@targets)
 	{
 		$model_num++;
 		$modelnew=$model;
+    print "Loading $modelnew\n";
 		if(substr($modelnew,length($modelnew)-4) eq '.pdb')  ## for the qa, if the model name is too long, OPUS will fail, like MULTICOM-CONSTRUCT_TS1.pd
 		{
 			#$modelnew .= '.pdb';
@@ -135,8 +136,8 @@ foreach $model (@targets)
 			`mv $dir_output/mod2/$modelnew.tmp $dir_output/mod2/$modelnew`;
 		}
 	}else{
-	
-		print "Warning: sequence not match!!!\n$seq\n$fasta_seq\n\n";
+		#print "Warning: sequence not match!!!\n$seq\n$fasta_seq\n\n";
+    next;
 	}
 }
 

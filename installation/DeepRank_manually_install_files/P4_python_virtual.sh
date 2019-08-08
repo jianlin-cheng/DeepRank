@@ -2,19 +2,19 @@
 
 echo " Start install python virtual environment (will take ~1 min)"
 
-cd /home/casp14/DeepRank_db_tools//tools
+cd /storage/htc/bdm/tools/DeepRank_db_tools//tools
 
 mkdir -p ~/.keras
 
 cp ~/.keras/keras.json ~/.keras/keras.json.$NOW.$RANDOM
 
-cp /home/jh7x3/DeepRank//installation/DeepRank_configure_files/keras_DeepRank.json ~/.keras/keras.json
+cp /storage/htc/bdm/jh7x3/DeepRank//installation/DeepRank_configure_files/keras_DeepRank.json ~/.keras/keras.json
 
 #rm -rf python_virtualenv
 
 virtualenv python_virtualenv
 
-source /home/casp14/DeepRank_db_tools//tools/python_virtualenv/bin/activate
+source /storage/htc/bdm/tools/DeepRank_db_tools//tools/python_virtualenv/bin/activate
 
 pip install --upgrade pip
 
@@ -40,5 +40,5 @@ pip install --upgrade pillow
 
 NOW=$(date +"%m-%d-%Y")
 
-echo "installed" > /home/casp14/DeepRank_db_tools//tools/python_virtualenv/install.done
+echo "installed" > /storage/htc/bdm/tools/DeepRank_db_tools//tools/python_virtualenv/install.done
 

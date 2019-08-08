@@ -30,7 +30,7 @@ for($i=1;$i<=10;$i++)
   print "\n\n\nProcessing $folddir\n\n";
   
   
-  `python /home/jh7x3/DeepRank/src/scripts/python_lib/predict_main_auto_NN_single.py nadam $traindata  $folddir $outputdir/fold${i}model_for_$label.txt`;
+  `python /storage/htc/bdm/jh7x3/DeepRank/src/scripts/python_lib/predict_main_auto_NN_single.py nadam $traindata  $folddir $outputdir/fold${i}model_for_$label.txt`;
 
 
 

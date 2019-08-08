@@ -44,8 +44,8 @@ mkdir -p $outputfolder
 cd $outputfolder
 
 
-echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_voronota.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
-perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_voronota.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  voronota.log
+echo "perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_voronota.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
+perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_voronota.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  voronota.log
 
 
 printf "\nFinished.."
@@ -53,7 +53,7 @@ printf "\nCheck log file <$outputfolder/voronota.log>\n\n"
 
 
 if [[ ! -f "$outputfolder/ALL_scores/feature_voronota.$targetid" ]];then 
-	printf "!!!!! Failed to run voronota, check the installation </home/jh7x3/DeepRank/src/scripts/run_DeepRank_voronota.pl>\n\n"
+	printf "!!!!! Failed to run voronota, check the installation </storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_voronota.pl>\n\n"
 else
 	printf "\nJob successfully completed!"
 	cp $outputfolder/ALL_scores/feature_voronota.$targetid $outputfolder/voronota_prediction.$targetid

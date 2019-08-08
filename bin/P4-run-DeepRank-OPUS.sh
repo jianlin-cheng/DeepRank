@@ -44,8 +44,8 @@ mkdir -p $outputfolder
 cd $outputfolder
 
 
-echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_OPUS.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
-perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_OPUS.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  OPUS.log
+echo "perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_OPUS.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
+perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_OPUS.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  OPUS.log
 
 
 printf "\nFinished.."
@@ -53,7 +53,7 @@ printf "\nCheck log file <$outputfolder/OPUS.log>\n\n"
 
 
 if [[ ! -f "$outputfolder/ALL_scores/feature_OPUS.$targetid" ]];then 
-	printf "!!!!! Failed to run OPUS, check the installation </home/jh7x3/DeepRank/src/scripts/run_DeepRank_OPUS.pl>\n\n"
+	printf "!!!!! Failed to run OPUS, check the installation </storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_OPUS.pl>\n\n"
 else
 	printf "\nJob successfully completed!"
 	cp $outputfolder/ALL_scores/feature_OPUS.$targetid $outputfolder/OPUS_prediction.$targetid

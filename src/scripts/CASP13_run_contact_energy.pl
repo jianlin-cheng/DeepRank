@@ -46,9 +46,9 @@ foreach $pdb  (@pdbfiles)
   
   `cp $pdb_file $workdir/$pdb`;
   
-  `perl /home/jh7x3/DeepRank/src/scripts/get_dncon2_3_levels_info.pl -rr $target.dncon2.rr -pdb $pdb -smin 6 -smax 11`;
-  `perl /home/jh7x3/DeepRank/src/scripts/get_dncon2_3_levels_info.pl -rr $target.dncon2.rr -pdb $pdb -smin 12 -smax 23`;
-  `perl /home/jh7x3/DeepRank/src/scripts/get_dncon2_3_levels_info.pl -rr $target.dncon2.rr -pdb $pdb -smin 24 -smax 10000`;
+  `perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/get_dncon2_3_levels_info.pl -rr $target.dncon2.rr -pdb $pdb -smin 6 -smax 11`;
+  `perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/get_dncon2_3_levels_info.pl -rr $target.dncon2.rr -pdb $pdb -smin 12 -smax 23`;
+  `perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/get_dncon2_3_levels_info.pl -rr $target.dncon2.rr -pdb $pdb -smin 24 -smax 10000`;
   
   `rm $workdir/$pdb`;
 }

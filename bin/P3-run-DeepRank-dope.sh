@@ -44,8 +44,8 @@ mkdir -p $outputfolder
 cd $outputfolder
 
 
-echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_dope.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
-perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_dope.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  dope.log
+echo "perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_dope.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
+perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_dope.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  dope.log
 
 
 printf "\nFinished.."
@@ -53,7 +53,7 @@ printf "\nCheck log file <$outputfolder/dope.log>\n\n"
 
 
 if [[ ! -f "$outputfolder/ALL_scores/feature_dope.$targetid" ]];then 
-	printf "!!!!! Failed to run dope, check the installation </home/jh7x3/DeepRank/src/scripts/run_DeepRank_dope.pl>\n\n"
+	printf "!!!!! Failed to run dope, check the installation </storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_dope.pl>\n\n"
 else
 	printf "\nJob successfully completed!"
 	cp $outputfolder/ALL_scores/feature_dope.$targetid $outputfolder/dope_prediction.$targetid

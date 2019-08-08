@@ -2,13 +2,13 @@
 
 echo " Start install python virtual environment for keras2 (will take ~1 min)"
 
-cd /home/casp14/DeepRank_db_tools//tools
+cd /storage/htc/bdm/tools/DeepRank_db_tools//tools
 
 rm -rf python_virtualenv_keras2
 
 virtualenv python_virtualenv_keras2
 
-source /home/casp14/DeepRank_db_tools//tools/python_virtualenv_keras2/bin/activate
+source /storage/htc/bdm/tools/DeepRank_db_tools//tools/python_virtualenv_keras2/bin/activate
 
 pip install --upgrade pip
 
@@ -20,5 +20,5 @@ pip install --upgrade Theano
 
 pip install --upgrade h5py
 
-echo "installed" > /home/casp14/DeepRank_db_tools//tools/python_virtualenv_keras2/install.done
+echo "installed" > /storage/htc/bdm/tools/DeepRank_db_tools//tools/python_virtualenv_keras2/install.done
 

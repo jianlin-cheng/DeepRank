@@ -44,8 +44,8 @@ mkdir -p $outputfolder
 cd $outputfolder
 
 
-echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_modfoldclust2.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
-perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_modfoldclust2.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  modfoldclust2.log
+echo "perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_modfoldclust2.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
+perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_modfoldclust2.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  modfoldclust2.log
 
 
 printf "\nFinished.."
@@ -53,7 +53,7 @@ printf "\nCheck log file <$outputfolder/modfoldclust2.log>\n\n"
 
 
 if [[ ! -f "$outputfolder/ALL_scores/modfoldclust2.$targetid" ]];then 
-	printf "!!!!! Failed to run modfoldclust2, check the installation </home/jh7x3/DeepRank/src/scripts/run_DeepRank_modfoldclust2.pl>\n\n"
+	printf "!!!!! Failed to run modfoldclust2, check the installation </storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_modfoldclust2.pl>\n\n"
 else
 	printf "\nJob successfully completed!"
 	cp $outputfolder/ALL_scores/modfoldclust2.$targetid $outputfolder/modfoldclust2_prediction.$targetid

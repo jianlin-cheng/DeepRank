@@ -44,8 +44,8 @@ mkdir -p $outputfolder
 cd $outputfolder
 
 
-echo "perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_contact.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
-perl /home/jh7x3/DeepRank/src/scripts/run_DeepRank_contact.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  contact.log
+echo "perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_contact.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile\n\n";								
+perl /storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_contact.pl $targetid   $fasta  $model_dir  $outputfolder $contact_file $nativefile  2>&1 | tee  contact.log
 
 
 printf "\nFinished.."
@@ -53,7 +53,7 @@ printf "\nCheck log file <$outputfolder/contact.log>\n\n"
 
 
 if [[ ! -f "$outputfolder/ALL_scores/feature_dncon2_long-range.$targetid" ]];then 
-	printf "!!!!! Failed to run contact, check the installation </home/jh7x3/DeepRank/src/scripts/run_DeepRank_contact.pl>\n\n"
+	printf "!!!!! Failed to run contact, check the installation </storage/htc/bdm/jh7x3/DeepRank/src/scripts/run_DeepRank_contact.pl>\n\n"
 else
 	printf "\nJob successfully completed!"
 	cp $outputfolder/ALL_scores/contact_prediction_short-range.$targetid $outputfolder/contact_prediction_short-range.$targetid
