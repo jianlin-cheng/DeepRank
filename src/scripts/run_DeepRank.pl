@@ -95,7 +95,6 @@ foreach $model (@targets)
 	{
 		$model_num++;
 		$modelnew=$model;
-    print "Loading $modelnew\n";
 		if(substr($modelnew,length($modelnew)-4) eq '.pdb')  ## for the qa, if the model name is too long, OPUS will fail, like MULTICOM-CONSTRUCT_TS1.pd
 		{
 			#$modelnew .= '.pdb';
@@ -136,8 +135,8 @@ foreach $model (@targets)
 			`mv $dir_output/mod2/$modelnew.tmp $dir_output/mod2/$modelnew`;
 		}
 	}else{
-		#print "Warning: sequence not match!!!\n$seq\n$fasta_seq\n\n";
-    next;
+	
+		print "Warning: sequence not match!!!\n$seq\n$fasta_seq\n\n";
 	}
 }
 
@@ -287,7 +286,7 @@ while($check_iteration<4)
 		
 		@tmp = split(/\s++/,$line);
 		$model = $tmp[0];
-		#$score = $tmp[1];
+		$score = $tmp[1];
 		
 		
 		if($method eq 'feature_SBROD')

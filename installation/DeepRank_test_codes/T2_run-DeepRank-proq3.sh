@@ -14,6 +14,7 @@ cd /storage/htc/bdm/jh7x3/DeepRank/test_out/T0980s1_proq3/
 source /storage/htc/bdm/jh7x3/DeepRank/tools/python_virtualenv/bin/activate
 export PATH=/storage/htc/bdm/jh7x3/DeepRank/tools/EMBOSS-6.6.0/bin/:$PATH
 export LD_LIBRARY_PATH=/storage/htc/bdm/jh7x3/DeepRank/tools/EMBOSS-6.6.0/lib/:$LD_LIBRARY_PATH
+export PATH=/storage/htc/bdm/jh7x3/DeepRank/tools/R-3.2.0/bin/:$PATH
 export LD_LIBRARY_PATH=/storage/htc/bdm/jh7x3/DeepRank/tools/rosetta_2014.16.56682_bundle/main/source/build/external/release/linux/2.6/64/x86/gcc/4.4/default/:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/storage/htc/bdm/jh7x3/DeepRank/tools/rosetta_2014.16.56682_bundle/main/source/build/src/release/linux/2.6/64/x86/gcc/4.4/default/:$LD_LIBRARY_PATH
 
