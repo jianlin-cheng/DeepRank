@@ -153,6 +153,6 @@ Examples:
    $ sh bin/P10-run-DeepRank-SBROD.sh <target id> <file name>.fasta <model directory> <output folder>
    
    contact:
-   $ sh bin/P11-run-DeepRank-contact.shh <target id> <file name>.fasta <model directory> <output folder>
+   $ sh bin/P11-run-DeepRank-contact.sh <target id> <file name>.fasta <model directory> <output folder>
    
 ```
