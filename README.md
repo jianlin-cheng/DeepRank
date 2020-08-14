@@ -144,7 +144,7 @@ Examples:
    $ sh bin/P7-run-DeepRank-Apollo.sh <target id> <file name>.fasta <model directory> <output folder>
    
    ModFoldclust2:
-   $ sh bin/P7-run-DeepRank-ModFoldclust2.sh <target id> <file name>.fasta <model directory> <output folder>
+   $ sh bin/P8-run-DeepRank-ModFoldclust2.sh <target id> <file name>.fasta <model directory> <output folder>
    
    pcons:
    $ sh bin/P9-run-DeepRank-pcons.sh <target id> <file name>.fasta <model directory> <output folder>
